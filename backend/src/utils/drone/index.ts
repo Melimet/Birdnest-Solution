@@ -8,7 +8,7 @@ async function droneHandler() {
 
   if (!drones) return
 
-  handleDroneLocations(drones)
+  const distances = handleDroneLocations(drones)
 }
 
 setInterval(async () => {

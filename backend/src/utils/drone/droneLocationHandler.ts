@@ -5,7 +5,7 @@ function calculateDistance(x: number, y: number): number {
   return result
 }
 
-function handleDroneLocations(drones: Drone[]): void {
+function handleDroneLocations(drones: Drone[]) {
   const distances = drones.map((drone) => {
     return {
       serialNumber: drone.serialNumber,
@@ -14,6 +14,7 @@ function handleDroneLocations(drones: Drone[]): void {
   })
 
   console.log('DISTANCES ', distances)
+  return distances
 }
 
 export default handleDroneLocations
