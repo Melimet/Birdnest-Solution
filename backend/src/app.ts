@@ -1,11 +1,11 @@
 import express from 'express'
-import pollDroneApi from './utils/drone/dronePoller'
+import droneHandler from './utils/drone'
 
 const app = express()
 
 app.use(express.json())
 
-pollDroneApi()
+droneHandler()
 
 app.get('/', (_req, res) => {
   res.send('Hello World!')

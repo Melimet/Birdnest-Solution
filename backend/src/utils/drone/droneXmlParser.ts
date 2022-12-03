@@ -34,10 +34,6 @@ function parseDroneXml(xmlInput: unknown): Drone[] | undefined {
   const parsed = z.string().parse(xmlInput)
   const drones = convertXmlToDrones(parsed)
 
-  if (!drones) return
-  
-  handleDroneLocations(drones)
-
   return drones
 }
 
