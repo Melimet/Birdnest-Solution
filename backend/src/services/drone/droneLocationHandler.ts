@@ -13,7 +13,6 @@ export function handleDroneLocations(drones: Drone[]): Distances[] {
     }
   })
 
-  console.log('DISTANCES ', distances)
   return distances
 }
 

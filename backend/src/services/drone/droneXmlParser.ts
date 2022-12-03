@@ -24,7 +24,6 @@ function convertXmlToDrones(xml: string): Drone[] | undefined {
     return parsedDrone.success ? parsedDrone.data : []
   })
 
-  console.log(droneData)
 
   return droneData
 }

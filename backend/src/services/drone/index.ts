@@ -1,3 +1,4 @@
+import pilotHandler from '../pilot'
 import {
   handleDroneLocations,
   checkForNDZViolations,
@@ -13,6 +14,10 @@ async function droneHandler() {
 
   const distances = handleDroneLocations(drones)
   const violators = checkForNDZViolations(distances)
+
+  if (!violators) return
+  
+  const pilots = pilotHandler(violators)
 }
 
 setInterval(async () => {
