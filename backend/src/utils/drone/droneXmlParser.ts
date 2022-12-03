@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { Drone, DroneZod } from '../types'
+import { Drone, DroneZod } from '../../types'
+import handleDroneLocations from './droneLocationHandler'
 
 function stringExtractor(input: string, value: string): string | undefined {
   const result = input.match(new RegExp(`<${value}>(.*)</${value}>`))
@@ -32,6 +33,10 @@ function convertXmlToDrones(xml: string): Drone[] | undefined {
 function parseDroneXml(xmlInput: unknown): Drone[] | undefined {
   const parsed = z.string().parse(xmlInput)
   const drones = convertXmlToDrones(parsed)
+
+  if (!drones) return
+  
+  handleDroneLocations(drones)
 
   return drones
 }

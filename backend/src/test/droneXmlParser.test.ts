@@ -1,4 +1,4 @@
-import parseDroneXml from '../utils/droneXmlParser'
+import parseDroneXml from '../utils/drone/droneXmlParser'
 import { invalidDroneXml, validDroneXml } from './test-resources/droneXmlData'
 
 describe(`DroneXmlParser`, () => {
@@ -25,13 +25,11 @@ describe(`DroneXmlParser`, () => {
 
     expect(drones).toEqual(expectedDrones)
   }),
-    
     test('should return nothing if xml is invalid', () => {
       const drones = parseDroneXml(invalidDroneXml)
 
       expect(drones).toEqual([])
     }),
-    
     test(`should return an empty array if no input is given`, () => {
       const expectedDrones: any[] = []
 
