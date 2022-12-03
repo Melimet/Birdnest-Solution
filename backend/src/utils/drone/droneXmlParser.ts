@@ -1,6 +1,5 @@
 import { z } from 'zod'
 import { Drone, DroneZod } from '../../types'
-import handleDroneLocations from './droneLocationHandler'
 
 function stringExtractor(input: string, value: string): string | undefined {
   const result = input.match(new RegExp(`<${value}>(.*)</${value}>`))
