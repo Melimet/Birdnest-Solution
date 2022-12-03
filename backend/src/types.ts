@@ -1,9 +1,11 @@
 import { z } from 'zod'
 
-const Drone = z.object({
+export const DroneZod = z.object({
   serialNumber: z.string(),
   positionY: z.number(),
   positionX: z.number(),
 })
 
-export type Drone = z.infer<typeof Drone>
+export const DroneZodArray = z.array(DroneZod)
+
+export type Drone = z.infer<typeof DroneZod>
