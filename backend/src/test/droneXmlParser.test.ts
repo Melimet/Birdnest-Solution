@@ -1,4 +1,4 @@
-import parseDroneXml from '../utils/drone/droneXmlParser'
+import parseDroneXml from '../services/drone/droneXmlParser'
 import { invalidDroneXml, validDroneXml } from './test-resources/droneXmlData'
 
 describe(`DroneXmlParser`, () => {

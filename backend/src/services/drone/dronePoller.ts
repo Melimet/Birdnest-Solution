@@ -1,5 +1,4 @@
 import axios from 'axios'
-import parseDroneXml from './droneXmlParser'
 
 const url = 'https://assignments.reaktor.com/birdnest/drones'
 

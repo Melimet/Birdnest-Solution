@@ -11,6 +11,4 @@ export interface Distances{
   distance: number
 }
 
-export const DroneZodArray = z.array(DroneZod)
-
 export type Drone = z.infer<typeof DroneZod>

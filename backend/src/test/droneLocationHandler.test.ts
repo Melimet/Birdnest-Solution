@@ -1,7 +1,7 @@
 import {
   handleDroneLocations,
   checkForNDZViolations,
-} from '../utils/drone/droneLocationHandler'
+} from '../services/drone/droneLocationHandler'
 
 describe('handleDroneLocations', () => {
   test('should return an empty array if no input is given', () => {

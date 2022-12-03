@@ -19,6 +19,5 @@ export function handleDroneLocations(drones: Drone[]): Distances[] {
 
 export function checkForNDZViolations(distances: Distances[]): Distances[] | undefined {
   const violators = distances.filter((drone) => drone.distance < 100000)
-  console.log('VIOLATIONS ', violators)
   return violators
 }
