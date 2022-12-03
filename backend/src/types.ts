@@ -6,6 +6,11 @@ export const DroneZod = z.object({
   positionX: z.number().positive(),
 })
 
+export interface Distances{
+  serialNumber: string
+  distance: number
+}
+
 export const DroneZodArray = z.array(DroneZod)
 
 export type Drone = z.infer<typeof DroneZod>

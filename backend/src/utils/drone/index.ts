@@ -1,6 +1,9 @@
-import handleDroneLocations from "./droneLocationHandler"
-import pollDroneApi from "./dronePoller"
-import parseDroneXml from "./droneXmlParser"
+import {
+  handleDroneLocations,
+  checkForNDZViolations,
+} from './droneLocationHandler'
+import pollDroneApi from './dronePoller'
+import parseDroneXml from './droneXmlParser'
 
 async function droneHandler() {
   const droneData = await pollDroneApi()
@@ -9,11 +12,11 @@ async function droneHandler() {
   if (!drones) return
 
   const distances = handleDroneLocations(drones)
+  const violators = checkForNDZViolations(distances)
 }
 
 setInterval(async () => {
   await droneHandler()
 }, 2000)
-
 
 export default droneHandler

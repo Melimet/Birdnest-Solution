@@ -1,11 +1,11 @@
-import { Drone } from '../../types'
+import { Distances, Drone } from '../../types'
 
 function calculateDistance(x: number, y: number): number {
   const result = Math.sqrt(Math.pow(250000 - x, 2) + Math.pow(250000 - y, 2))
   return result
 }
 
-function handleDroneLocations(drones: Drone[]) {
+export function handleDroneLocations(drones: Drone[]): Distances[] {
   const distances = drones.map((drone) => {
     return {
       serialNumber: drone.serialNumber,
@@ -17,4 +17,8 @@ function handleDroneLocations(drones: Drone[]) {
   return distances
 }
 
-export default handleDroneLocations
+export function checkForNDZViolations(distances: Distances[]): Distances[] | undefined {
+  const violators = distances.filter((drone) => drone.distance < 100000)
+  console.log('VIOLATIONS ', violators)
+  return violators
+}
