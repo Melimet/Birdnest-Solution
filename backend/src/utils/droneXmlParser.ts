@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { DroneZodArray } from '../types'
+import { Drone, DroneZodArray } from '../types'
 
 function stringExtractor(input: string, value: string) {
   const result = input.match(new RegExp(`<${value}>(.*)</${value}>`))
@@ -7,7 +7,7 @@ function stringExtractor(input: string, value: string) {
   return result?.[1]
 }
 
-function convertXmlToDrones(xml: string): DroneXmlInput {
+function convertXmlToDrones(xml: string): Drone[] {
   const [, ...xmlInArray] = xml.split('<drone>')
 
   const droneData = xmlInArray.map((droneInfo) => {
@@ -29,7 +29,7 @@ function parseDroneXml(xmlInput: unknown) {
   const parsed = z.string().parse(xmlInput)
   const drones = convertXmlToDrones(parsed)
 
-  
+  return drones
 }
 
 export default parseDroneXml
