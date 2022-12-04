@@ -25,4 +25,5 @@ resource "aws_db_instance" "birdnest_rds" {
   engine               = "postgres"
   engine_version       = "13.3"
   instance_class       = "db.t3.micro"
+  username             = "melimet"
 }
