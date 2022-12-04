@@ -4,6 +4,6 @@ import { PORT } from './config/config'
 
 const server = http.createServer(app)
 
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`)
 })
