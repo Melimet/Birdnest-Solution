@@ -20,7 +20,7 @@ provider "aws" {
 
 resource "aws_db_instance" "birdnest_rds" {
   identifier           = "birdnest-rds"
-  db_name              = "birdnest-db"  
+  db_name              = "birdnestDb"  
   allocated_storage    = 20
   engine               = "postgres"
   engine_version       = "13.3"
