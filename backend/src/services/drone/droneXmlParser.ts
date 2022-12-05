@@ -10,9 +10,11 @@ function stringExtractor(input: string, value: string): string | undefined {
 function convertXmlToDrones(xml: string): Drone[] | undefined {
   const [, ...xmlInArray] = xml.split('<drone>')
 
+  const valuesToSearch = ['serialNumber', 'positionX', 'positionY']
+
   const droneData = xmlInArray.flatMap((droneInfo) => {
-    const wantedValues = ['serialNumber', 'positionY', 'positionX'].map(
-      (string) => stringExtractor(droneInfo, string)
+    const wantedValues = valuesToSearch.map(
+      (wordToSearch) => stringExtractor(droneInfo, wordToSearch)
     )
 
     const drone = {
@@ -20,6 +22,7 @@ function convertXmlToDrones(xml: string): Drone[] | undefined {
       positionY: Number(wantedValues[1]),
       positionX: Number(wantedValues[2]),
     }
+
     const parsedDrone = DroneZod.safeParse(drone)
     return parsedDrone.success ? parsedDrone.data : []
   })
