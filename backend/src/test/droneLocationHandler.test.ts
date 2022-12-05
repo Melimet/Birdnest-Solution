@@ -35,15 +35,15 @@ describe('checkForNDZViolations', () => {
   })
   test('should return a correct array of distances', () => {
     const distances = [
-      { serialNumber: 'SN-7IBnsWgTBI', distance: 192876.0167995431 },
-      { serialNumber: 'SN-ugj-fRr0Qm', distance: 85099.62832485135 },
+      { serialNumber: 'SN-7IBnsWgTBI', distance: 100876.0167995431 },
+      { serialNumber: 'SN-ugj-fRr0Qm', distance: 99099.62832485135 },
       { serialNumber: 'SN-BEcekTwQ9S', distance: 197900.95946953492 },
       { serialNumber: 'SN-o6rP7EYERf', distance: 221864.59440413464 },
     ]
 
     const results = checkForNDZViolations(distances)
     const expectedResults = [
-      { serialNumber: 'SN-ugj-fRr0Qm', distance: 85099.62832485135 },
+      { serialNumber: 'SN-ugj-fRr0Qm', distance: 99099.62832485135 },
     ]
 
     expect(results).toEqual(expectedResults)
