@@ -1,0 +1,30 @@
+.pilotContainer{
+
+  margin-top: 2.5em;
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+
+  justify-content: space-around;
+  align-items: normal;
+  width: 100%;
+}
+
+.pilotCard{
+  flex: 0 1 25%;
+  margin: 0.5em;
+  padding: 1em;
+
+  border-radius: 10px;
+  background-color: #E28413;
+  text-align: center;
+
+  transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.pilotCard:hover{
+  background-color: #EB8F1E;
+  box-shadow: 0 0 10px #EB8F1E;  
+}
+

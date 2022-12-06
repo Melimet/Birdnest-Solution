@@ -1,9 +1,21 @@
 import Header from './components/Header'
+import Pilot from './components/Pilot'
+import './styles/pilot.css'
 
 function App() {
-
   return (
-  <Header />
+    <div>
+      <Header />
+    <main className="pilotContainer">
+      <Pilot />
+
+        <Pilot />
+        
+        <Pilot />
+
+        <Pilot />
+      </main>
+    </div>
   )
 }
 
