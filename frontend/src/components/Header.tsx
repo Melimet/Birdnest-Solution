@@ -13,7 +13,6 @@ function Header() {
         <HeaderImage imageSource={kuikka1} />
         <HeaderImage imageSource={kuikka3} />
         <HeaderImage imageSource={kuikka2} />
-        <HeaderImage imageSource={kuikka0} />
       </div>
     </header>
   )
