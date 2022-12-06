@@ -3,7 +3,7 @@ function Pilot() {
     <div className="pilotCard">
       <h2>Pilot</h2>
       <p>
-        Name address phonemnumber email kunnia 
+        Name address phonemnumber email fillertext
       </p>
     </div>
   )
