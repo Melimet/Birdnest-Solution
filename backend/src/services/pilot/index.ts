@@ -1,7 +1,7 @@
-import { Distances } from '../../types'
+import { PilotDistance } from '../../types'
 import getViolatorsData from './pilotFetcher'
 
-async function pilotHandler(violators: Distances[]) {
+async function pilotHandler(violators: PilotDistance[]) {
   const pilots = await getViolatorsData(violators)
 
   console.log("PILOTS, ", pilots)

@@ -6,7 +6,7 @@ export const DroneZod = z.object({
   positionX: z.number().positive(),
 })
 
-export interface Distances{
+export interface PilotDistance{
   serialNumber: string
   distance: number
 }

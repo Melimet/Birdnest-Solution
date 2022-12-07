@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Distances, Pilot, PilotZod } from '../../types'
+import {  Pilot, PilotDistance, PilotZod } from '../../types'
 
 const baseUrl = "https://assignments.reaktor.com/birdnest/pilots/"
 
@@ -16,7 +16,7 @@ async function getPilotData(serialNumber: string): Promise<Pilot | unknown> {
   }
 }
 
-async function getViolatorsData(violators: Distances[]): Promise<Pilot[]> {
+async function getViolatorsData(violators: PilotDistance[]): Promise<Pilot[]> {
   const pilots = await Promise.all(violators.map((violator) => {
     return getPilotData(violator.serialNumber)
   }))
