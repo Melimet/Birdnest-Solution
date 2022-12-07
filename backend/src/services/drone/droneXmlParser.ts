@@ -19,8 +19,8 @@ function convertXmlToDrones(xml: string): Drone[] | undefined {
 
     const drone = {
       serialNumber: wantedValues[0],
-      positionY: Number(wantedValues[1]),
-      positionX: Number(wantedValues[2]),
+      positionX: Number(wantedValues[1]),
+      positionY: Number(wantedValues[2]),
     }
 
     const parsedDrone = DroneZod.safeParse(drone)
