@@ -6,17 +6,11 @@ import { Server } from 'socket.io'
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: 'localhost:5174',
-    methods: ['GET'],
+    origin: '*',
   },
 })
 
-io.on('connection', (socket) => {
-  console.log('a user connected')
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
-  })
-})
+export const pilotSocket = io.of('/api/pilots')
 
 server.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`)

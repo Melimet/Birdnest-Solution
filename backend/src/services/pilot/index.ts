@@ -1,5 +1,6 @@
+import { pilotSocket } from '../..'
 import { PilotDistance } from '../../types'
-import handleDatabase from './pilotController'
+import handleDatabase, { getPilots } from './pilotController'
 import getViolatorsData from './pilotFetcher'
 
 async function pilotHandler(violators: PilotDistance[]) {
@@ -8,7 +9,12 @@ async function pilotHandler(violators: PilotDistance[]) {
   console.log("PILOTS, ", pilots)
 
 
-  handleDatabase(pilots)
+  await handleDatabase(pilots)
+
+  const pilotsFromDb = await getPilots()
+
+  pilotSocket.emit('pilots', pilotsFromDb)
+
 
   return pilots
 }
