@@ -12,15 +12,17 @@ async function getPilotByPilotId(pilotId: string) {
   })
 }
 
-async function createPilot(pilot: PilotType) {
-  return await Pilot.create({
-    pilotId: pilot.pilotId,
-    firstName: pilot.firstName,
-    lastName: pilot.lastName,
-    email: pilot.email,
-    phoneNumber: pilot.phoneNumber,
-    distance: pilot.distance,
-    latestNdzBreach: Date.now(),
+function createPilotObjects(pilots: PilotType[]) {
+  return pilots.map((pilot) => {
+    return {
+      pilotId: pilot.pilotId,
+      firstName: pilot.firstName,
+      lastName: pilot.lastName,
+      email: pilot.email,
+      phoneNumber: pilot.phoneNumber,
+      distance: pilot.distance,
+      latestNdzBreach: Date.now(),
+    }
   })
 }
 
@@ -62,7 +64,7 @@ async function updatePilot(pilot: PilotType) {
   const pilotInDb = await getPilotByPilotId(pilot.pilotId)
   if (!pilotInDb) return
 
-   return pilot.distance < pilotInDb.distance ? 
+   return pilot.distance > pilotInDb.distance ? 
     await updateNdzBreachTime(pilot) : 
     await updateNdzBreachTimeAndDistance(pilot)
 }
@@ -85,12 +87,8 @@ async function handleDatabase(pilots: PilotType[]) {
     await updatePilot(pilot)
   })
 
-  const createdPilots = await Promise.all(
-    newPilots.map(async (pilot) => {
-      return await createPilot(pilot)
-    })
-  )
-
+  const pilotObjects = createPilotObjects(newPilots)
+  const createdPilots = await Pilot.bulkCreate(pilotObjects)
   await pruneOldBreaches()
   
   return [oldPilots, newPilots]
