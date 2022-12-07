@@ -34,22 +34,19 @@ async function pruneOldBreaches() {
   })
 }
 
-async function updatePilot(pilot: PilotType) {
-  const pilotInDb = await getPilotByPilotId(pilot.pilotId)
-  if (!pilotInDb) return
+function updateNdzBreachTime(pilot: PilotType) {
+  return Pilot.update(
+    {
+      latestNdzBreach: Date.now(),
+    },
+    {
+      where: { pilotId: pilot.pilotId },
+    }
+  )
+}
 
-  if (pilot.distance < pilotInDb.distance) {
-    return await Pilot.update(
-      {
-        latestNdzBreach: Date.now(),
-      },
-      {
-        where: { pilotId: pilot.pilotId },
-      }
-    )
-  }
-
-  return await Pilot.update(
+function updateNdzBreachTimeAndDistance(pilot: PilotType) {
+  return Pilot.update(
     {
       distance: pilot.distance,
       latestNdzBreach: Date.now(),
@@ -58,6 +55,15 @@ async function updatePilot(pilot: PilotType) {
       where: { pilotId: pilot.pilotId },
     }
   )
+}
+
+async function updatePilot(pilot: PilotType) {
+  const pilotInDb = await getPilotByPilotId(pilot.pilotId)
+  if (!pilotInDb) return
+
+   return pilot.distance < pilotInDb.distance ? 
+    await updateNdzBreachTime(pilot) : 
+    await updateNdzBreachTimeAndDistance(pilot)
 }
 
 async function handleDatabase(pilots: PilotType[]) {
