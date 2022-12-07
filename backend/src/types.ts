@@ -6,7 +6,7 @@ export const DroneZod = z.object({
   positionX: z.number().positive(),
 })
 
-export interface PilotDistance{
+export interface PilotDistance {
   serialNumber: string
   distance: number
 }
@@ -18,8 +18,8 @@ export const PilotZod = z.object({
   phoneNumber: z.string(),
   email: z.string(),
   createdDt: z.string(),
+  distance: z.number().positive(),
 })
-
 
 export type Pilot = z.infer<typeof PilotZod>
 export type Drone = z.infer<typeof DroneZod>
