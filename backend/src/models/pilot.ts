@@ -30,12 +30,20 @@ Pilot.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    closestDistance: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    lastNdzBreach: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    }
   },
   {
     sequelize,
     modelName: "pilot",
-    timestamps: true,
-    underscored: true,
+    timestamps: false,
   }
 )
 
