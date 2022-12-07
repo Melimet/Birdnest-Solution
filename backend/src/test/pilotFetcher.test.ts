@@ -1,6 +1,10 @@
 // These tests MIGHT be flaky since it is dependant on the data from the API
+// Will mock the API if this implementation proves to be unreliable
 import getViolatorsData from '../services/pilot/pilotFetcher'
-import { validDroneDistanceData, invalidDroneDistanceData } from '../test/test-resources/droneDistanceData'
+import {
+  validDroneDistanceData,
+  invalidDroneDistanceData,
+} from '../test/test-resources/droneDistanceData'
 
 describe(`PilotFetcher`, () => {
   test(`should fetch pilot data from the API`, async () => {
