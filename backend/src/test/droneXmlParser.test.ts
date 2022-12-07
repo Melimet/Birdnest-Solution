@@ -31,6 +31,7 @@ describe(`DroneXmlParser`, () => {
       expect(drones).toEqual([])
     }),
     test(`should return an empty array if no input is given`, () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const expectedDrones: any[] = []
 
       const drones = parseDroneXml('')
