@@ -21,5 +21,5 @@ export const PilotZod = z.object({
   distance: z.number().positive(),
 })
 
-export type Pilot = z.infer<typeof PilotZod>
+export type PilotType = z.infer<typeof PilotZod>
 export type Drone = z.infer<typeof DroneZod>

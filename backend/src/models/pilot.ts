@@ -1,7 +1,16 @@
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../config/db"
 
-export class Pilot extends Model { }
+class Pilot extends Model {
+  declare id: number
+  declare pilotId: string
+  declare firstName: string
+  declare lastName: string
+  declare email: string
+  declare phoneNumber: string
+  declare distance: number
+  declare latestNdzBreach: number
+}
 
 Pilot.init(
   {
@@ -31,11 +40,11 @@ Pilot.init(
       allowNull: false,
     },
     distance: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     latestNdzBreach: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
     }
   },
