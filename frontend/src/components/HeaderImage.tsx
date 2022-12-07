@@ -8,7 +8,7 @@ function HeaderImage({ imageSource }: HeaderImageProps) {
       <img
         className="headerImage"
         src={imageSource}
-        alt="kuikka"
+        alt="monadikuikka"
         draggable="false"
       />
     </div>

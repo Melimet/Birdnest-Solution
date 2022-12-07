@@ -10,6 +10,7 @@ function App() {
       <Pilot />
 
         <Pilot />
+        <Pilot />
         
         <Pilot />
 
