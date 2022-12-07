@@ -5,7 +5,8 @@ async function pilotHandler(violators: Distances[]) {
   const pilots = await getViolatorsData(violators)
 
   console.log("PILOTS, ", pilots)
-  
+
+
   return pilots
 }
 

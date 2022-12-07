@@ -1,21 +1,32 @@
 import axios from 'axios'
-import { Distances } from '../../types'
+import { Distances, Pilot, PilotZod } from '../../types'
 
 const baseUrl = "https://assignments.reaktor.com/birdnest/pilots/"
 
-async function getPilotData(serialNumber: string) {
-  
-  const url = baseUrl + serialNumber
-  const response = await axios.get(url)
-  return response.data
+async function getPilotData(serialNumber: string): Promise<Pilot | unknown> {
+  try {
+
+    const url = baseUrl + serialNumber
+    const response = await axios.get(url)
+    return response.data
+
+  } catch (error: unknown) {
+    console.error(error)
+    return error
+  }
 }
 
-async function getViolatorsData(violators: Distances[]) {
-  const pilots = violators.map(async (violator) => {
-    return await getPilotData(violator.serialNumber)
+async function getViolatorsData(violators: Distances[]): Promise<Pilot[]> {
+  const pilots = await Promise.all(violators.map((violator) => {
+    return getPilotData(violator.serialNumber)
+  }))
+
+  const parsedPilots = pilots.flatMap((pilot) => {
+    const parsedPilot = PilotZod.safeParse(pilot)
+    return parsedPilot.success ? parsedPilot.data : []
   })
-  await Promise.all(pilots)
-  return pilots
+
+  return parsedPilots
 }
 
 export default getViolatorsData
