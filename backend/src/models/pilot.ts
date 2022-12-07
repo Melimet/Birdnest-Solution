@@ -30,14 +30,13 @@ Pilot.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    closestDistance: {
+    distance: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    lastNdzBreach: {
-      type: DataTypes.DATE,
+    latestNdzBreach: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
     }
   },
   {
