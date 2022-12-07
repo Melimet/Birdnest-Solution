@@ -25,10 +25,11 @@ async function createPilot(pilot: PilotType) {
 }
 
 async function pruneOldBreaches() {
+  const tenMinutesInMilliseconds = 600000
   return await Pilot.destroy({
     where: {
       latestNdzBreach: {
-        [Op.lt]: Date.now() - 600000, // 10 minutes in milliseconds
+        [Op.lt]: Date.now() - tenMinutesInMilliseconds, 
       },
     },
   })
