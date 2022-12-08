@@ -4,13 +4,15 @@ import { PORT } from './config/config'
 import { Server } from 'socket.io'
 
 const server = http.createServer(app)
-const io = new Server(server, {
+export const io = new Server(server, {
   cors: {
     origin: '*',
   },
 })
 
-export const pilotSocket = io.of('/api/pilots')
+io.on('pilots', (pilots) => {
+  console.log("Data being sent to client: ", pilots)
+})
 
 server.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`)

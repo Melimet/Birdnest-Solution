@@ -15,9 +15,10 @@ async function droneHandler() {
   const distances = handleDroneLocations(drones)
   const violators = checkForNDZViolations(distances)
 
-  if (!violators) return
+  if (violators?.length === 0 || !violators) return
+
   console.log(violators) 
-  const pilots = pilotHandler(violators)
+  const pilots = await pilotHandler(violators)
 }
 
 setInterval(async () => {
