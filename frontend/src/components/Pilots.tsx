@@ -1,36 +1,29 @@
-import { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-
+import { useEffect, useState } from 'react'
+import io from 'socket.io-client'
+import Pilot from './Pilot'
+import { PilotType } from '../types'
 function Pilots() {
+  const socket = io('http://localhost:3001/')
 
-  const socket = io('http://localhost:3001/api/pilots')
-
-  const [isConnected, setIsConnected] = useState(socket.connected);
-  const [lastPong, setLastPong] = useState(null);
+  const [pilots, setPilots] = useState<PilotType[]>([])
 
   useEffect(() => {
-    socket.on('connect', () => {
-      setIsConnected(true);
-    });
+    console.log("RECEIVING PILOT DATA")
+    socket.on('pilots', (pilotData) => {
+      console.log('PILOT DATA ', pilotData)
+      setPilots(pilotData)
+    })
 
-    socket.on('disconnect', () => {
-      setIsConnected(false);
-    });
-
-
-
-    return () => {
-      socket.off('connect');
-      socket.off('disconnect');
-      socket.off('pong');
-    };
-  }, []);
-
+    return () => socket.disconnect()
+  })
 
   return (
-    <div></div>
-  )  
-
+    <div>
+      {pilots.map((pilot) => {
+        return <Pilot key={pilot.id} pilot={pilot} />
+      })}
+    </div>
+  )
 }
 
 export default Pilots
