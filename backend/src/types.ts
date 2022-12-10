@@ -22,7 +22,6 @@ export const PilotZod = z.object({
 
 export interface PilotToClient extends PilotType{
   latestNdzBreach: string
-  
 }
 
 export type PilotType = z.infer<typeof PilotZod>

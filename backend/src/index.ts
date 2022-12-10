@@ -2,6 +2,7 @@ import { app } from './app'
 import http from 'http'
 import { PORT } from './config/config'
 import { Server } from 'socket.io'
+import { getPilots } from './services/pilot/pilotController'
 
 const server = http.createServer(app)
 export const io = new Server(server, {
@@ -10,10 +11,9 @@ export const io = new Server(server, {
   },
 })
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   console.log('Client connected')
-  socket.on('disconnect', () => {
-    console.log('Client disconnected')
+  socket.send({pilots: await getPilots()
   })
 })
 
