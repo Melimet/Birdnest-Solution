@@ -1,8 +1,8 @@
 import { io } from '../../index'
-import Pilot from '../../models/pilot'
+import { PilotToClient } from '../../types'
 
 
-async function emitPilots(pilots: Pilot[]) {
+async function emitPilots(pilots: PilotToClient[]) {
   console.log("EMITTING PILOT DATA NOW")
   io.emit('pilots', { pilots })
 }

@@ -17,9 +17,13 @@ export const PilotZod = z.object({
   lastName: z.string(),
   phoneNumber: z.string(),
   email: z.string(),
-  createdDt: z.string(),
   distance: z.number().positive(),
 })
+
+export interface PilotToClient extends PilotType{
+  latestNdzBreach: string
+  
+}
 
 export type PilotType = z.infer<typeof PilotZod>
 export type Drone = z.infer<typeof DroneZod>
