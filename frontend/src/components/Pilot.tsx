@@ -8,15 +8,20 @@ interface PilotProps {
 }
 
 function Pilot({ pilot }: { pilot: PilotProps }) {
+  const date = new Date(Number(pilot.latestNdzBreach))
+  const timeString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+
   return (
-    <div className="pilotCard">
+    <article className="pilotCard">
       <h3>
         {pilot.firstName} {pilot.lastName}
       </h3>
-      {Object.keys(pilot).map((attribute) => (
-        <p key={attribute}>{attribute}</p>
-      ))}
-    </div>
+      <p>{pilot.email}</p>
+      <p>{pilot.phoneNumber}</p>
+      <p>Closest distance: {pilot.distance} m</p>
+
+      <p>Last seen: {timeString}</p>
+    </article>
   )
 }
 
