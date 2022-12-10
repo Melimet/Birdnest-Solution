@@ -7,14 +7,15 @@ interface PilotProps {
   latestNdzBreach: number
 }
 
-
-function Pilot({pilot}: {pilot: PilotProps}) {
+function Pilot({ pilot }: { pilot: PilotProps }) {
   return (
     <div className="pilotCard">
-      <h2>Pilot</h2>
-      <p>
+      <h3>
         {pilot.firstName} {pilot.lastName}
-      </p>
+      </h3>
+      {Object.keys(pilot).map((attribute) => (
+        <p key={attribute}>{attribute}</p>
+      ))}
     </div>
   )
 }
