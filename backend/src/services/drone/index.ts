@@ -13,7 +13,7 @@ async function droneHandler() {
   if (!drones) return
 
   const distances = handleDroneLocations(drones)
-  const violators = checkForNDZViolations(distances)
+  const violators = checkForNDZViolations(distances, 100)
 
   if (violators?.length === 0 || !violators) return
 
