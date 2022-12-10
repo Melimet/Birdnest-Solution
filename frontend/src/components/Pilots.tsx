@@ -9,7 +9,7 @@ function Pilots() {
   return (
     <main className="pilotContainer">
       {pilots.map((pilot) => {
-        return <Pilot key={pilot.id} pilot={pilot} />
+        return <Pilot key={pilot.pilotId} pilot={pilot} />
       })}
     </main>
   )

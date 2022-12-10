@@ -1,15 +1,7 @@
-interface PilotProps {
-  firstName: string
-  lastName: string
-  phoneNumber: string
-  email: string
-  distance: number
-  latestNdzBreach: number
-}
+import { PilotType } from "../types"
 
-function Pilot({ pilot }: { pilot: PilotProps }) {
-  const date = new Date(Number(pilot.latestNdzBreach))
-  const timeString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+
+function Pilot({ pilot }: { pilot: PilotType }) {
 
   return (
     <article className="pilotCard">
@@ -20,7 +12,7 @@ function Pilot({ pilot }: { pilot: PilotProps }) {
       <p>{pilot.phoneNumber}</p>
       <p>Closest distance: {pilot.distance} m</p>
 
-      <p>Last seen: {timeString}</p>
+      <p>Last seen:{pilot.latestNdzBreach}</p>
     </article>
   )
 }
