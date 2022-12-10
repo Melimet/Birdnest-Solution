@@ -44,7 +44,7 @@ Pilot.init(
       allowNull: false,
     },
     latestNdzBreach: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.STRING,
       allowNull: false,
     }
   },
