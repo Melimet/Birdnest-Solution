@@ -3,6 +3,8 @@ import { PilotToClient } from '../../types'
 
 function convertBreachTimeToTimeString(pilots: Pilot[]): PilotToClient[] {
   const parsedPilots = pilots.map((pilot) => {
+    const date = new Date(+pilot.latestNdzBreach)
+    console.log("DATE", date.toLocaleTimeString('en-GB'))
     return {
       pilotId: pilot.pilotId,
       firstName: pilot.firstName,
@@ -10,7 +12,7 @@ function convertBreachTimeToTimeString(pilots: Pilot[]): PilotToClient[] {
       email: pilot.email,
       phoneNumber: pilot.phoneNumber,
       distance: pilot.distance,
-      latestNdzBreach: (new Date(pilot.latestNdzBreach)).toLocaleTimeString('en-GB'),
+      latestNdzBreach: date.toLocaleTimeString('en-GB'),
     }
   })
 
