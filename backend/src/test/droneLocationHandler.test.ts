@@ -20,7 +20,7 @@ describe('handleDroneLocations', () => {
 
     const results = handleDroneLocations(drones)
     const expectedResults = [
-      { serialNumber: 'SN-vMc3aUUffP', distance: 223741.62271544483 },
+      { serialNumber: 'SN-vMc3aUUffP', distance: 223.74 },
     ]
 
     expect(results).toEqual(expectedResults)
@@ -29,7 +29,7 @@ describe('handleDroneLocations', () => {
 
 describe('checkForNDZViolations', () => {
   test('should return an empty array if no input is given', () => {
-    const results = checkForNDZViolations([])
+    const results = checkForNDZViolations([], 100)
 
     expect(results).toEqual([])
   })
@@ -41,7 +41,7 @@ describe('checkForNDZViolations', () => {
       { serialNumber: 'SN-o6rP7EYERf', distance: 221864.59440413464 },
     ]
 
-    const results = checkForNDZViolations(distances)
+    const results = checkForNDZViolations(distances, 100000)
     const expectedResults = [
       { serialNumber: 'SN-ugj-fRr0Qm', distance: 99099.62832485135 },
     ]
