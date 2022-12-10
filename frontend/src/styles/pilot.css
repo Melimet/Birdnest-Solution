@@ -1,6 +1,6 @@
 .pilotContainer{
   font-size: small;
-  margin-top: 2.5em;
+  margin: 2.5em 1.5em 1.5em 1.5em;
   display: grid;
 
   gap: 1em;
@@ -23,3 +23,17 @@
   box-shadow: 0 0 10px #EB8F1E;  
 }
 
+@media (max-width: 1000px) {
+  .pilotContainer{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+  
+@media (max-width: 500px) {
+  .pilotContainer{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5em;
+    font-size: x-small;
+    padding: 0em;
+  }
+}
