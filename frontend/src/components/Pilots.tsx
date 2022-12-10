@@ -5,10 +5,14 @@ import '../styles/pilot.css'
 function Pilots() {
   
   const pilots = usePilotSocket()
+  const sortedByTime = pilots.sort((a, b) => {
+    return b.latestNdzBreach.localeCompare(a.latestNdzBreach)
+  }) 
+
 
   return (
     <main className="pilotContainer">
-      {pilots.map((pilot) => {
+      {sortedByTime.map((pilot) => {
         return <Pilot key={pilot.pilotId} pilot={pilot} />
       })}
     </main>
