@@ -15,12 +15,7 @@ async function getPilotByPilotId(pilotId: string) {
 function createPilotObjects(pilots: PilotType[]) {
   return pilots.map((pilot) => {
     return {
-      pilotId: pilot.pilotId,
-      firstName: pilot.firstName,
-      lastName: pilot.lastName,
-      email: pilot.email,
-      phoneNumber: pilot.phoneNumber,
-      distance: pilot.distance,
+      ...pilot, 
       latestNdzBreach: Date.now(),
     }
   })
