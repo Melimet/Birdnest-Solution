@@ -17,8 +17,9 @@ async function droneHandler() {
 
   if (violators?.length === 0 || !violators) return
 
-  console.log(violators) 
+  console.log(violators)
   const pilots = await pilotHandler(violators)
+  return pilots
 }
 
 setInterval(async () => {

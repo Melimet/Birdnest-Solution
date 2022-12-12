@@ -1,5 +1,5 @@
-import { DataTypes, Model } from "sequelize"
-import { sequelize } from "../config/db"
+import { DataTypes, Model } from 'sequelize'
+import { sequelize } from '../config/db'
 
 class Pilot extends Model {
   declare id: number
@@ -46,11 +46,11 @@ Pilot.init(
     latestNdzBreach: {
       type: DataTypes.BIGINT,
       allowNull: false,
-    }
+    },
   },
   {
     sequelize,
-    modelName: "pilot",
+    modelName: 'pilot',
     timestamps: false,
   }
 )

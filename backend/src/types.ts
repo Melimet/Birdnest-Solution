@@ -20,7 +20,7 @@ export const PilotZod = z.object({
   distance: z.number().positive(),
 })
 
-export interface PilotToClient extends PilotType{
+export interface PilotToClient extends PilotType {
   latestNdzBreach: string
 }
 

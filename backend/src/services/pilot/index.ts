@@ -7,8 +7,7 @@ import emitPilots from './socketEmitter'
 async function pilotHandler(violators: PilotDistance[]) {
   const pilots = await getViolatorsData(violators)
 
-  console.log("PILOTS, ", pilots)
-
+  console.log('PILOTS, ', pilots)
 
   await handleDatabase(pilots)
 
@@ -16,7 +15,6 @@ async function pilotHandler(violators: PilotDistance[]) {
 
   const parsedPilots = convertBreachTimeToTimeString(pilotsFromDb)
   await emitPilots(parsedPilots)
-
 
   return pilots
 }

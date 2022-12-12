@@ -8,7 +8,7 @@ app.use(express.json())
 
 droneHandler()
 
-app.get('/',async (_req, res) => {
+app.get('/', async (_req, res) => {
   return res.json(await getPilots())
 })
 

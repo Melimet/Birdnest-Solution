@@ -4,8 +4,7 @@ const url = 'https://assignments.reaktor.com/birdnest/drones'
 
 async function pollDroneApi() {
   const response = await axios.get(url)
-  return (response.data)
+  return response.data
 }
-
 
 export default pollDroneApi

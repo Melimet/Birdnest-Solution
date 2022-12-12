@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
-dotenv.config() 
+import dotenv from 'dotenv'
+dotenv.config()
 
 const PORT = process.env.PORT || 3001
 
@@ -9,9 +9,9 @@ const DB_INFO = {
   PASSWORD: process.env.DB_PASSWORD,
   PORT: process.env.DB_PORT,
   DBNAME: process.env.DB_NAME,
-  dialect: "postgres",
+  dialect: 'postgres',
 }
 
 console.log(DB_INFO)
 
-export { PORT, DB_INFO };
+export { PORT, DB_INFO }

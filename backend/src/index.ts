@@ -13,12 +13,11 @@ export const io = new Server(server, {
 
 io.on('connection', async (socket) => {
   console.log('Client connected')
-  socket.send({pilots: await getPilots()
-  })
+  socket.send({ pilots: await getPilots() })
 })
 
 io.on('pilots', (pilots) => {
-  console.log("Data being sent to client: ", pilots)
+  console.log('Data being sent to client: ', pilots)
 })
 
 server.listen(PORT, async () => {
