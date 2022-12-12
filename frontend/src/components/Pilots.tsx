@@ -3,12 +3,10 @@ import usePilotSocket from '../hooks/usePilotSocket'
 import '../styles/pilot.css'
 
 function Pilots() {
-  
   const pilots = usePilotSocket()
   const sortedByTime = pilots.sort((a, b) => {
     return b.latestNdzBreach.localeCompare(a.latestNdzBreach)
-  }) 
-
+  })
 
   return (
     <main className="pilotContainer">
