@@ -1,4 +1,3 @@
-import kuikka0 from '../images/kuikka0.webp'
 import kuikka1 from '../images/kuikka1.webp'
 import kuikka2 from '../images/kuikka2.webp'
 import kuikka3 from '../images/kuikka3.webp'

@@ -1,48 +1,45 @@
-.pilotContainer{
+.pilotContainer {
   font-size: small;
   margin: 2.5em 1.5em 1.5em 1.5em;
   display: grid;
 
   gap: 1em;
   grid-template-columns: repeat(5, 1fr);
-
 }
 
-.pilotCard{
-
-
+.pilotCard {
   border-radius: 10px;
-  background-color: #E28413;
+  background-color: #e28413;
   text-align: center;
 
   transition: box-shadow 0.3s, background-color 0.3s;
 }
 
-.pilotCard:hover{
-  background-color: #EB8F1E;
-  box-shadow: 0 0 10px #EB8F1E;  
+.pilotCard:hover {
+  background-color: #eb8f1e;
+  box-shadow: 0 0 10px #eb8f1e;
 }
 
 @media (max-width: 1350px) {
-  .pilotContainer{
+  .pilotContainer {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 1100px) {
-  .pilotContainer{
+  .pilotContainer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 820px) {
-  .pilotContainer{
+  .pilotContainer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-  
+
 @media (max-width: 580px) {
-  .pilotContainer{
+  .pilotContainer {
     grid-template-columns: repeat(1, 1fr);
     gap: 1em;
     font-size: x-small;

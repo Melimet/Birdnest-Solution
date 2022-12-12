@@ -21,9 +21,8 @@ function usePilotSocket() {
       setPilots(validatedPilots)
     })
   }, [])
- 
+
   return pilots
 }
 
 export default usePilotSocket
-

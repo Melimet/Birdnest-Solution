@@ -1,8 +1,6 @@
-import { PilotType } from "../types"
-
+import { PilotType } from '../types'
 
 function Pilot({ pilot }: { pilot: PilotType }) {
-
   return (
     <article className="pilotCard">
       <h3>

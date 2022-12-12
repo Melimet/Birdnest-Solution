@@ -1,11 +1,11 @@
-.header{
+.header {
   position: relative;
 }
 
 .headerTitle {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #80D39B;
+  color: #80d39b;
   font-size: 3em;
   line-height: 1;
   font-weight: 800;
@@ -23,7 +23,6 @@
 }
 
 .headerImage {
-
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -33,11 +32,7 @@
     rgb(0 0 0 / 0)
   );
 
-  mask-image: linear-gradient(
-    rgb(0 0 0 / 1), 
-    rgb(0 0 0 / 0.7), 
-    rgb(0 0 0 / 0)
-    );
+  mask-image: linear-gradient(rgb(0 0 0 / 1), rgb(0 0 0 / 0.7), rgb(0 0 0 / 0));
 }
 
 @media (max-width: 1000px) {
@@ -46,9 +41,8 @@
   }
 }
 
-@media (max-width: 750px){
-  .headerTitle{
+@media (max-width: 750px) {
+  .headerTitle {
     font-size: 1.5em;
   }
 }
-
