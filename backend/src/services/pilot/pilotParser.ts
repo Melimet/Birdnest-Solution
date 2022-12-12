@@ -1,7 +1,7 @@
 import Pilot from '../../models/pilot'
 import { PilotToClient } from '../../types'
 
-function convertBreachTimeToTimeString(pilots: Pilot[]): PilotToClient[] {
+function convertPilotsToClientFormat(pilots: Pilot[]): PilotToClient[] {
   const parsedPilots = pilots.map((pilot) => {
     const date = new Date(+pilot.latestNdzBreach)
     console.log('DATE', date.toLocaleTimeString('en-GB'))
@@ -19,4 +19,4 @@ function convertBreachTimeToTimeString(pilots: Pilot[]): PilotToClient[] {
   return parsedPilots
 }
 
-export default convertBreachTimeToTimeString
+export default convertPilotsToClientFormat

@@ -3,7 +3,7 @@ import http from 'http'
 import { PORT } from './config/config'
 import { Server } from 'socket.io'
 import { getPilots } from './services/pilot/pilotController'
-import convertBreachTimeToTimeString from './services/pilot/pilotParser'
+import convertPilotsToClientFormat from './services/pilot/pilotParser'
 
 const server = http.createServer(app)
 export const io = new Server(server, {
@@ -14,7 +14,7 @@ export const io = new Server(server, {
 
 io.on('connection', async (socket) => {
   console.log('Client connected')
-  const pilots = convertBreachTimeToTimeString(await getPilots())
+  const pilots = convertPilotsToClientFormat(await getPilots())
 
   socket.emit('pilots', { pilots })
 })

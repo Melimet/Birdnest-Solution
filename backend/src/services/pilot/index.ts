@@ -1,7 +1,7 @@
 import { PilotDistance } from '../../types'
 import handleDatabase, { getPilots } from './pilotController'
 import getViolatorsData from './pilotFetcher'
-import convertBreachTimeToTimeString from './pilotParser'
+import convertPilotsToClientFormat from './pilotParser'
 import emitPilots from './socketEmitter'
 
 async function pilotHandler(violators: PilotDistance[]) {
@@ -13,7 +13,7 @@ async function pilotHandler(violators: PilotDistance[]) {
 
   const pilotsFromDb = await getPilots()
 
-  const parsedPilots = convertBreachTimeToTimeString(pilotsFromDb)
+  const parsedPilots = convertPilotsToClientFormat(pilotsFromDb)
   await emitPilots(parsedPilots)
 
   return pilots
