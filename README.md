@@ -1,4 +1,4 @@
-# Birdnest-Solution ![CI/CD](https://github.com/Melimet/Birdnest-Solution/blob/main/.github/workflows/main.yml/badge.svg)
+# Birdnest-Solution ![CI/CD](https://github.com/Melimet/Birdnest-Solution/actions/workflows/main.yml/badge.svg)
 
 Solution to reaktor 2022 summer code challenge
 ## Description
