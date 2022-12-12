@@ -1,0 +1,14 @@
+name: CI/CD workflow
+on:
+  push:
+    branches: [main]
+
+jobs:
+  CI:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Lint frontend
+        run: cd frontend/ && npm run lint
+      - name: Lint backend
+        run: cd backend/ && npm run lint
+      
