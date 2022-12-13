@@ -33,6 +33,6 @@ async function serviceHandler() {
 
 setInterval(async () => {
   await serviceHandler()
-}, 2000)
+}, 1000)
 
 export default serviceHandler
