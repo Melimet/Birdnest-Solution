@@ -10,6 +10,8 @@ async function getPilotData(
     const url = baseUrl + violator.serialNumber
     const response = await axios.get(url)
 
+    console.log("MOCK DATA", response.data)
+
     return { ...response.data, distance: violator.distance }
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -21,19 +23,24 @@ async function getPilotData(
   }
 }
 
+function validatePilots(pilots: unknown[]): PilotType[] {
+  return pilots.flatMap((pilot) => {
+    const parsedPilot = PilotZod.safeParse(pilot)
+    return parsedPilot.success ? parsedPilot.data : []
+  })
+}
+
 async function getViolatorsData(
   violators: PilotDistance[]
 ): Promise<PilotType[]> {
   const pilots = await Promise.all(
-    violators.map(async (violator) => {
+    violators.map((violator) => {
       return getPilotData(violator)
     })
   )
 
-  const parsedPilots = pilots.flatMap((pilot) => {
-    const parsedPilot = PilotZod.safeParse(pilot)
-    return parsedPilot.success ? parsedPilot.data : []
-  })
+
+  const parsedPilots = validatePilots(pilots)
 
   return parsedPilots
 }
