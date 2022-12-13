@@ -24,5 +24,14 @@ export interface PilotToClient extends PilotType {
   latestNdzBreach: string
 }
 
+export const DB_INFO_ZOD = z.object({
+  HOST: z.string(),
+  USERNAME: z.string(),
+  PASSWORD: z.string(),
+  PORT: z.string(),
+  DBNAME: z.string(),
+  dialect: z.string(),
+})
+
 export type PilotType = z.infer<typeof PilotZod>
 export type Drone = z.infer<typeof DroneZod>

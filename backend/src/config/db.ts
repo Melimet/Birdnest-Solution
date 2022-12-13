@@ -1,15 +1,10 @@
 import { Sequelize } from 'sequelize'
 import { DB_INFO } from './config'
 
-const sequelize = new Sequelize(
-  DB_INFO.DBNAME,
-  DB_INFO.USERNAME,
-  DB_INFO.PASSWORD,
-  {
-    host: DB_INFO.HOST,
-    dialect: 'postgres',
-  }
-)
+const sequelize = new Sequelize(DB_INFO.DBNAME, DB_INFO.USERNAME, DB_INFO.PASSWORD, {
+  host: DB_INFO.HOST,
+  dialect: 'postgres',
+})
 
 const connectToDatabase = async () => {
   try {
