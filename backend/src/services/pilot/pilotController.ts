@@ -26,7 +26,7 @@ export async function pruneOldBreaches() {
   return await Pilot.destroy({
     where: {
       latestNdzBreach: {
-        [Op.lt]: Date.now() - tenMinutesInMilliseconds,
+        [Op.lte]: Date.now() - tenMinutesInMilliseconds,
       },
     },
   })

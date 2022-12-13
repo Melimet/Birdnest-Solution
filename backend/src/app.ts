@@ -6,9 +6,10 @@ const app = express()
 
 app.use(express.json())
 
+app.use(express.static('frontend-build'))
 serviceHandler()
 
-app.get('/', async (_req, res) => {
+app.get('/api/pilots', async (_req, res) => {
   return res.json(await getPilotsFromDb())
 })
 
