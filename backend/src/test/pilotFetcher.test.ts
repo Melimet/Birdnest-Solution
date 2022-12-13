@@ -30,7 +30,6 @@ describe(`PilotFetcher`, () => {
     expect(pilots[0].firstName).toBe(`Summer`)
   }),
     describe('invalid data', () => {
-      
       const mockResponse = {
         status: 404,
         statusText: 'Not Found',

@@ -10,8 +10,6 @@ async function getPilotData(
     const url = baseUrl + violator.serialNumber
     const response = await axios.get(url)
 
-    console.log("MOCK DATA", response.data)
-
     return { ...response.data, distance: violator.distance }
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -38,7 +36,6 @@ async function getViolatorsData(
       return getPilotData(violator)
     })
   )
-
 
   const parsedPilots = validatePilots(pilots)
 

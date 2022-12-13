@@ -10,7 +10,7 @@ function Pilot({ pilot }: { pilot: PilotType }) {
       <p>{pilot.phoneNumber}</p>
       <p>Closest distance: {pilot.distance} m</p>
 
-      <p>Last seen: {pilot.latestNdzBreach}</p>
+      <p>Last seen inside NDZ: {pilot.latestNdzBreach}</p>
     </article>
   )
 }

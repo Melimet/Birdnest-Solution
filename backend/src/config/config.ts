@@ -1,4 +1,4 @@
-import dotenv, { parse } from 'dotenv'
+import dotenv from 'dotenv'
 import { DB_INFO_ZOD } from '../types'
 dotenv.config()
 
