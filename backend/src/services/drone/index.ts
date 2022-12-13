@@ -1,4 +1,3 @@
-import pilotHandler from '../pilot'
 import {
   handleDroneLocations,
   checkForNDZViolations,
@@ -10,20 +9,14 @@ async function droneHandler() {
   const droneData = await pollDroneApi()
   const drones = parseDroneXml(droneData)
 
-  if (!drones) return
+  if (!drones) return undefined
 
   const distances = handleDroneLocations(drones)
   const violators = checkForNDZViolations(distances, 100)
 
-  if (violators?.length === 0 || !violators) return
+  if (violators?.length === 0 || !violators) return undefined
 
-  console.log(violators)
-  const pilots = await pilotHandler(violators)
-  return pilots
+  return violators
 }
-
-setInterval(async () => {
-  await droneHandler()
-}, 2000)
 
 export default droneHandler

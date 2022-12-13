@@ -1,12 +1,12 @@
 import express from 'express'
-import droneHandler from './services/drone'
+import serviceHandler from './services'
 import { getPilots } from './services/pilot/pilotController'
 
 const app = express()
 
 app.use(express.json())
 
-droneHandler()
+serviceHandler()
 
 app.get('/', async (_req, res) => {
   return res.json(await getPilots())

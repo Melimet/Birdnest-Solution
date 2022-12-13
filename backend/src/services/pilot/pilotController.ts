@@ -2,7 +2,7 @@ import { Op } from 'sequelize'
 import Pilot from '../../models/pilot'
 import { PilotType } from '../../types'
 
-export async function getPilots() {
+export async function getPilotsFromDb() {
   return await Pilot.findAll()
 }
 
@@ -21,7 +21,7 @@ function createPilotObjects(pilots: PilotType[]) {
   })
 }
 
-async function pruneOldBreaches() {
+export async function pruneOldBreaches() {
   const tenMinutesInMilliseconds = 600000
   return await Pilot.destroy({
     where: {
@@ -64,10 +64,12 @@ async function updatePilot(pilot: PilotType) {
     : await updateNdzBreachTimeAndDistance(pilot)
 }
 
-async function handleDatabase(pilots: PilotType[]) {
-  const pilotsFromDb = await getPilots()
+function sortPilots(
+  pilots: PilotType[],
+  pilotsFromDb: Pilot[]
+): [PilotType[], PilotType[]] {
 
-  const [oldPilots, newPilots] = pilots.reduce(
+  return pilots.reduce(
     ([oldPilots, newPilots], pilot) => {
       return pilotsFromDb.some(
         (pilotInDb) => pilotInDb.pilotId === pilot.pilotId
@@ -77,16 +79,25 @@ async function handleDatabase(pilots: PilotType[]) {
     },
     [[], []] as [PilotType[], PilotType[]]
   )
+}
 
-  oldPilots.forEach(async (pilot) => {
-    await updatePilot(pilot)
-  })
+async function handleDatabase(pilots: PilotType[]): Promise<number> {
+  const pilotsFromDb = await getPilotsFromDb()
+
+  const [oldPilots, newPilots] = sortPilots(pilots, pilotsFromDb)
+
+  const updatedOldPilots = await Promise.all(
+    oldPilots.map(async (pilot) => {
+      return await updatePilot(pilot)
+    })
+  )
 
   const pilotObjects = createPilotObjects(newPilots)
-  const createdPilots = await Pilot.bulkCreate(pilotObjects)
-  await pruneOldBreaches()
+  const createdPilots = await Pilot.bulkCreate(pilotObjects, {
+    returning: true,
+  })
 
-  return [oldPilots, newPilots]
+  return updatedOldPilots.length + createdPilots.length
 }
 
 export default handleDatabase
