@@ -12,11 +12,9 @@ jobs:
         with: 
           node-version: '19'
       - name: npm install
-        run: cd frontend/ && npm install & cd backend/ && npm install
-      - name: Lint frontend
-        run: cd frontend/ && npm run lint
-      - name: Lint backend
-        run: cd backend/ && npm run lint
+        run: bash scripts/install_dependencies.sh
+      - name: Lint
+        run: bash scripts/linters.sh
       - name: test backend
         run: cd backend/ && npm run test
       
