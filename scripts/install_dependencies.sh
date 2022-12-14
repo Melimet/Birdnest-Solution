@@ -1,6 +1,6 @@
 #!/usr/bin/bash
-cd ./frontend && npm install
+cd ./frontend && npm ci
 echo "Frontend dependecies installed"
 cd ..
-cd ./backend && npm install
+cd ./backend && npm ci
 echo "Backend dependecies installed"
