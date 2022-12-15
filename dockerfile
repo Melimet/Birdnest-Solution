@@ -23,6 +23,7 @@ COPY backend/package*.json ./
 
 RUN npm ci --omit=dev
 
+COPY --from=builder /usr/src/app/frontend-build ./frontend-build
 COPY --from=builder /usr/src/app/dist ./dist
 
 EXPOSE 3001 
