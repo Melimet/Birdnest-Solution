@@ -4,7 +4,6 @@ import { PilotToClient } from '../../types'
 function convertPilotsToClientFormat(pilots: Pilot[]): PilotToClient[] {
   const parsedPilots = pilots.map((pilot) => {
     const date = new Date(+pilot.latestNdzBreach)
-    console.log('DATE', date.toLocaleTimeString('en-GB'))
     return {
       pilotId: pilot.pilotId,
       firstName: pilot.firstName,
