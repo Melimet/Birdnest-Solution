@@ -9,13 +9,13 @@ COPY scripts/*.sh ./scripts/
 RUN chmod +x ./scripts/*.sh
 RUN sh scripts/install_dependencies.sh
 
-COPY ./frontend/dist ./frontend/dist
+COPY ./frontend ./frontend
 
 RUN sh scripts/build_and_copy_frontend.sh
 
-COPY ./backend .
+COPY ./backend ./backend
 
-RUN npm run build
+RUN cd ./backend && npm run build
 
 FROM node:lts-slim
 
@@ -25,8 +25,8 @@ COPY backend/package*.json ./
 
 RUN npm ci --omit=dev
 
-COPY --from=builder /usr/src/app/frontend-build ./frontend-build
-COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/backend/frontend-build ./frontend-build
+COPY --from=builder /usr/src/app/backend/dist ./dist
 
 EXPOSE 3001 
 CMD [ "node", "dist/index.js" ]
