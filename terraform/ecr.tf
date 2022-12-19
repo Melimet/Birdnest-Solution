@@ -1,5 +1,4 @@
-// create ECR repository for birdnest
-resource "aws_ecr_repository" "birdnest" {
-  name = "birdnest"
+resource "aws_ecr_repository" "birdnest-ecr" {
+  name = "birdnest-ecr"
   image_tag_mutability = "MUTABLE"
 }
