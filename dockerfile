@@ -9,6 +9,8 @@ COPY scripts/*.sh ./scripts/
 RUN chmod +x ./scripts/*.sh
 RUN sh scripts/install_dependencies.sh
 
+COPY ./frontend/dist ./frontend/dist
+
 RUN sh scripts/build_and_copy_frontend.sh
 
 COPY ./backend .
