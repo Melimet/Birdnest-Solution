@@ -47,9 +47,8 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
   DEFINITION
   cpu= "256"
   memory= "512"
-  requires_compatibilities = [
-    "FARGATE"
-  ]
+  requires_compatibilities = ["FARGATE"]
+  network_mode = "awsvpc"
 }
 
 resource "aws_ecs_service" "birdnest-ecs-service" {
@@ -59,6 +58,7 @@ resource "aws_ecs_service" "birdnest-ecs-service" {
   desired_count = 1
   launch_type = "FARGATE"
   network_configuration {
+    subnets = aws_subnet.private.*.id
     assign_public_ip = true
   }
   load_balancer {
