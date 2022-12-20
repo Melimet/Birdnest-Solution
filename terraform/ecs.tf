@@ -44,6 +44,8 @@ TASK_DEFINITION
   memory= "512"
   requires_compatibilities = ["FARGATE"]
   network_mode = "awsvpc"
+  execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
+  task_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
 }
 
 resource "aws_ecs_service" "birdnest-ecs-service" {
@@ -60,4 +62,3 @@ resource "aws_ecs_service" "birdnest-ecs-service" {
     "name" = "birdnest-ecs-service"
   }
 }
-  
