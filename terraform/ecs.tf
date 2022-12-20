@@ -14,10 +14,10 @@ data "aws_secretsmanager_secret_version" "current" {
 }
 
 data "template_file" "env_vars" {
-  template = {
+  vars = {
     "PORT"=3001,
     "DB_HOST"="birdnest-rds.cytbr08afwwn.eu-north-1.rds.amazonaws.com",
-    "DB_PASSWORD"=jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)
+    "DB_PASSWORD"=jsondecode(data.aws_secretsmanager_secret_version.current.secret_string),
     "DB_PORT"=5432,
     "DB_USERNAME"="melimet",
     "DB_NAME"="birdnestDb"
