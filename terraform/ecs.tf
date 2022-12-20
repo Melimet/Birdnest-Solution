@@ -28,7 +28,7 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
   [
     {
       "name": "birdnest-ecs-container",
-      "image": "aws_ecr_repository.birdnest-ecr.repository_url",
+      "image": "${aws_ecr_repository.birdnest-ecr.repository_url}",
       "environment": [${data.template_file.env_vars.rendered}],
       "essential": true,
       "portMappings": [
