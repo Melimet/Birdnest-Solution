@@ -51,3 +51,23 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
     "FARGATE"
   ]
 }
+
+resource "aws_ecs_service" "birdnest-ecs-service" {
+  name = "birdnest-ecs-service"
+  cluster = aws_ecs_cluster.birdnest-ecs-cluster.id
+  task_definition = aws_ecs_task_definition.birdnest-ecs-task.arn
+  desired_count = 1
+  launch_type = "FARGATE"
+  network_configuration {
+    assign_public_ip = true
+  }
+  load_balancer {
+    target_group_arn = aws_alb_target_group.birdnest-alb-target-group.arn
+    container_name = "birdnest-ecs-container"
+    container_port = 3001
+  }
+  tags = {
+    "name" = "birdnest-ecs-service"
+  }
+}
+  
