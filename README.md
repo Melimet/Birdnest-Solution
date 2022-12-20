@@ -50,7 +50,7 @@ docker run -p 3001:3001 -d --env-file ./backend/.env --name birdnest-solution-co
 docker stop birdnest-solution-container 
 docker rm birdnest-solution-container
 ```
-## Terraform
+## Cloud architecture
 These terraform files are set to create an RDS db instance and an ECS instance running the application on AWS. The configuration files can be found in the `./terraform` folder. Terraform state is configured to be stored in Terraform cloud. Terraform validates and updates(if necessary) it's own state on each push to Github.
 
 ## Testing
