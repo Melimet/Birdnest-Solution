@@ -8,7 +8,7 @@ resource "aws_vpc" "birdnest-vpc" {
 }
 
 resource "aws_internet_gateway" "birdnest-igw" {
-  vpc_id = aws_vpc.aws-vpc.id
+  vpc_id = aws_vpc.birdnest-vpc.id
   tags = {
     Name        = "birdnest-igw"
   }
@@ -19,7 +19,7 @@ resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.birdnest-vpc.id
   count             = length(var.private_subnets)
   cidr_block        = element(var.private_subnets, count.index)
-  availability_zone = element(var.availability_zones, count.index)
+  availability_zone = "eu-north-1"
 
   tags = {
     Name        = "birdnest-private-subnet-${count.index + 1}"
@@ -29,7 +29,7 @@ resource "aws_subnet" "private" {
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.birdnest-vpc.id
   cidr_block              = element(var.public_subnets, count.index)
-  availability_zone       = element(var.availability_zones, count.index)
+  availability_zone       = "eu-north-1"
   count                   = length(var.public_subnets)
   map_public_ip_on_launch = true
 
@@ -49,7 +49,7 @@ resource "aws_route_table" "public" {
 resource "aws_route" "public" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.aws-igw.id
+  gateway_id             = aws_internet_gateway.birdnest-igw.id
 }
 
 resource "aws_route_table_association" "public" {

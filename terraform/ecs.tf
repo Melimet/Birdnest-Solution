@@ -6,7 +6,7 @@ resource "aws_ecs_cluster" "birdnest-ecs-cluster" {
 }
 
 data "aws_secretsmanager_secret" "secrets" {
-  arn = "arn:aws:secretsmanager:eu-north-1:254904283749:secret:db-pass-Birdnest-Solution-O7DDvq"
+  name = "db-pass-Birdnest-Solution"
 }
 
 data "aws_secretsmanager_secret_version" "current" {
@@ -14,27 +14,22 @@ data "aws_secretsmanager_secret_version" "current" {
 }
 
 data "template_file" "env_vars" {
-  vars = {
-    "PORT"=3001,
-    "DB_HOST"="birdnest-rds.cytbr08afwwn.eu-north-1.rds.amazonaws.com",
-    "DB_PASSWORD"=jsondecode(data.aws_secretsmanager_secret_version.current.secret_string),
-    "DB_PORT"=5432,
-    "DB_USERNAME"="melimet",
-    "DB_NAME"="birdnestDb"
-  }
+  vars = {PORT= 3001,
+    DB_PORT= 5432,
+    DB_NAME= "birdnestDb",
+    DB_PASSWORD= data.aws_secretsmanager_secret_version.current.secret_string,
+    DB_HOST= "birdnest-rds.cytbr08afwwn.eu-north-1.rds.amazonaws.com"}
 }
 
 
 resource "aws_ecs_task_definition" "birdnest-ecs-task" {
   family = "birdnest-ecs-task"
-  container_definitions= <<DEFINITION
+  container_definitions=<<TASK_DEFINITION
   [
     {
       "name": "birdnest-ecs-container",
-      "image": "${aws_ecr_repository.birdnest-ecr.repository_url}",
-      "cpu": "256", 
-      "memory": "512"
-      environment: ${data.template_file.env_vars.rendered}
+      "image": "aws_ecr_repository.birdnest-ecr.repository_url",
+      "environment": [${data.template_file.env_vars.rendered}],
       "essential": true,
       "portMappings": [
         {
@@ -44,7 +39,7 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
       ]
     }
   ]
-  DEFINITION
+TASK_DEFINITION
   cpu= "256"
   memory= "512"
   requires_compatibilities = ["FARGATE"]
@@ -60,10 +55,6 @@ resource "aws_ecs_service" "birdnest-ecs-service" {
   network_configuration {
     subnets = aws_subnet.private.*.id
     assign_public_ip = true
-  }
-  load_balancer {
-    container_name = "birdnest-ecs-container"
-    container_port = 3001
   }
   tags = {
     "name" = "birdnest-ecs-service"

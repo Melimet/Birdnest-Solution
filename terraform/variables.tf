@@ -5,8 +5,10 @@ variable "cidr" {
 
 variable "public_subnets" {
   description = "List of public subnets"
+  default = ["10.10.100.0/24", "10.10.101.0/24"]
 }
 
 variable "private_subnets" {
   description = "List of private subnets"
+  default = ["10.10.0.0/24", "10.10.1.0/24"]
 }
