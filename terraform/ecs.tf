@@ -62,7 +62,6 @@ resource "aws_ecs_service" "birdnest-ecs-service" {
     assign_public_ip = true
   }
   load_balancer {
-    target_group_arn = aws_alb_target_group.birdnest-alb-target-group.arn
     container_name = "birdnest-ecs-container"
     container_port = 3001
   }
