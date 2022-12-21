@@ -9,15 +9,17 @@ resource "aws_vpc" "birdnest-vpc" {
 
 resource aws_vpc_endpoint "ecr-api" {
 
-  subnet_ids = [aws_subnet.private[0].id]
   vpc_id = aws_vpc.birdnest-vpc.id
-  service_name = "api.ecr.eu-north-1.amazonaws.com" 
+  service_name = "com.amazonaws.eu-north-1.ecr.api"
 }
 
 #resource aws_vpc_endpoint "ecr-dkr" {
 #  vpc_id = aws_vpc.birdnest-vpc.id
 #  service_name = "${aws_ecr_repository.birdnest-ecr.registry_id}.dkr.ecr.eu-north-1.amazonaws.com"
 #}
+
+  
+
 
 
 resource "aws_internet_gateway" "birdnest-igw" {
@@ -70,3 +72,4 @@ resource "aws_route_table_association" "public" {
   subnet_id      = element(aws_subnet.public.*.id, count.index)
   route_table_id = aws_route_table.public.id
 }
+
