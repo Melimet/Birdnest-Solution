@@ -18,8 +18,12 @@ data "aws_iam_policy_document" "assume_role_policy" {
       "secretsmanager:GetSecretValue"
     ]
     resources = [
-      "arn:aws:secretsmanager:eu-north-1:254904283749:secret:db-pass-Birdnest-Solution-O7DDvq"
+      "*"
     ]
+    principals {
+      type        = "Service"
+      identifiers = ["ecs-tasks.amazonaws.com"]
+    }
   }
 }
 
