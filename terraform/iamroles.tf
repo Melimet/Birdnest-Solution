@@ -7,7 +7,14 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
     policy = jsonencode({
       Statement = [
         {
-          Action = ["secretsmanager:GetSecretValue"]
+          Action = [
+            "secretsmanager:GetSecretValue",
+            "ecr:GetAuthorizationToken",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:BatchGetImage",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"]
           Effect= "Allow"
           Resource = "*"
         },
