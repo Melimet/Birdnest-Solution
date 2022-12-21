@@ -23,10 +23,6 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
   }
 }
 
-resource "aws_iam_service_linked_role" "ecsServiceLinkedRole" {
-  aws_service_name = "ecs.amazonaws.com" 
-}
-
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
     actions = ["sts:AssumeRole"]
