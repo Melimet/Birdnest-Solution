@@ -8,6 +8,8 @@ resource "aws_vpc" "birdnest-vpc" {
 }
 
 resource aws_vpc_endpoint "ecr-api" {
+
+  subnet_ids = [aws_subnet.private.*.id]
   vpc_id = aws_vpc.birdnest-vpc.id
   service_name = "api.ecr.eu-north-1.amazonaws.com" 
 }
@@ -58,7 +60,6 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route" "public" {
-  subnet_ids             = [aws_subnet.private.*.id]
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.birdnest-igw.id
