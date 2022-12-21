@@ -8,19 +8,25 @@ resource "aws_vpc" "birdnest-vpc" {
 }
 
 resource aws_vpc_endpoint "ecr-api" {
+  subnet_ids = [aws_subnet.private[0].id]
   vpc_endpoint_type = "Interface"
   vpc_id = aws_vpc.birdnest-vpc.id
   service_name = "com.amazonaws.eu-north-1.ecr.api"
 }
 
-#resource aws_vpc_endpoint "ecr-dkr" {
-#  vpc_id = aws_vpc.birdnest-vpc.id
-#  service_name = "${aws_ecr_repository.birdnest-ecr.registry_id}.dkr.ecr.eu-north-1.amazonaws.com"
-#}
+resource aws_vpc_endpoint "ecr-dkr" {
+  subnet_ids = [aws_subnet.private[0].id]
+  vpc_endpoint_type = "Interface"
+  vpc_id = aws_vpc.birdnest-vpc.id
+  service_name = "com.amazonaws.eu-north-1.ecr.dkr" 
+}
 
-  
-
-
+resource "aws_vpc_endpoint" "secretsmanager" {
+  subnet_ids = [aws_subnet.private[0].id]
+  vpc_endpoint_type = "Interface"
+  vpc_id = aws_vpc.birdnest-vpc.id
+  service_name = "com.amazonaws.eu-north-1.secretsmanager"
+}
 
 resource "aws_internet_gateway" "birdnest-igw" {
   vpc_id = aws_vpc.birdnest-vpc.id
