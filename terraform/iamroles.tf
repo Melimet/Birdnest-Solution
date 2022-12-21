@@ -4,22 +4,11 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
 }
 
 data "aws_iam_policy_document" "assume_role_policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
 
-    principals {
-      type        = "Service"
-      identifiers = ["ecs-tasks.amazonaws.com"]
-    }
-  }
   statement {
     effect = "Allow"
-    actions = [
-      "secretsmanager:GetSecretValue"
-    ]
-    resources = [
-      "*"
-    ]
+    actions = ["secretsmanager:GetSecretValue"]
+    resources = ["*"]
     principals {
       type        = "Service"
       identifiers = ["ecs-tasks.amazonaws.com"]
