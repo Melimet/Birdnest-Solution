@@ -51,7 +51,7 @@ TASK_DEFINITION
 resource "aws_ecs_service" "birdnest-ecs-service" {
   name = "birdnest-ecs-service"
   cluster = aws_ecs_cluster.birdnest-ecs-cluster.id
-  task_definition = aws_ecs_task_definition.birdnest-ecs-task.arn
+  task_definition = "${aws_ecs_task_definition.birdnest-ecs-task.family}:${aws_ecs_task_definition.birdnest-ecs-task.revision}"
   desired_count = 1
   launch_type = "FARGATE"
   network_configuration {
