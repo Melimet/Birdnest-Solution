@@ -1,14 +1,25 @@
 resource "aws_iam_role" "ecsTaskExecutionRole" {
   name               = "birdnest-execution-task-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
+
+  inline_policy {
+    name = "secrets-manager-access-policy"
+    policy = jsonencode({
+      Statement = [
+        {
+          Action = ["secretsmanager:GetSecretValue"]
+          Effect= "Allow"
+          Resource = "*"
+        },
+      ]
+    })
+  }
 }
 
 data "aws_iam_policy_document" "assume_role_policy" {
-
   statement {
-    effect = "Allow"
-    actions = ["secretsmanager:GetSecretValue"]
-    resources = ["*"]
+    actions = ["sts:AssumeRole"]
+
     principals {
       type        = "Service"
       identifiers = ["ecs-tasks.amazonaws.com"]
