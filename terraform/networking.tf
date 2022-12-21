@@ -8,7 +8,7 @@ resource "aws_vpc" "birdnest-vpc" {
 }
 
 resource aws_vpc_endpoint "ecr-api" {
-
+  vpc_endpoint_type = "Interface"
   vpc_id = aws_vpc.birdnest-vpc.id
   service_name = "com.amazonaws.eu-north-1.ecr.api"
 }
