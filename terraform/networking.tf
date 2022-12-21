@@ -10,7 +10,7 @@ resource "aws_vpc" "birdnest-vpc" {
 resource "aws_internet_gateway" "birdnest-igw" {
   vpc_id = aws_vpc.birdnest-vpc.id
   tags = {
-    Name        = "birdnest-igw"
+    Name = "birdnest-igw"
   }
 
 }
