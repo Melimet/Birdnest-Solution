@@ -9,7 +9,7 @@ resource "aws_vpc" "birdnest-vpc" {
 
 resource aws_vpc_endpoint "ecr-api" {
 
-  subnet_ids = [aws_subnet.private.*.id]
+  subnet_ids = [aws_subnet.private[0].id]
   vpc_id = aws_vpc.birdnest-vpc.id
   service_name = "api.ecr.eu-north-1.amazonaws.com" 
 }
