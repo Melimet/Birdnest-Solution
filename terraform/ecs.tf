@@ -54,6 +54,7 @@ resource "aws_ecs_service" "birdnest-ecs-service" {
   task_definition = "${aws_ecs_task_definition.birdnest-ecs-task.family}:${aws_ecs_task_definition.birdnest-ecs-task.revision}"
   desired_count = 1
   launch_type = "FARGATE"
+  iam_role = aws_iam_role.ecsTaskExecutionRole.arn
   network_configuration {
     subnets = aws_subnet.private.*.id
     assign_public_ip = true
