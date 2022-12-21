@@ -9,12 +9,12 @@ resource "aws_vpc" "birdnest-vpc" {
 
 resource aws_vpc_endpoint "ecr-api" {
   vpc_id = aws_vpc.birdnest-vpc.id
-  service_name = "com.amazonaws.eu-north-1.ecr.api"
+  service_name = "ecr.eu-north-1.amazonaws.com"
 }
 
 resource aws_vpc_endpoint "ecr-dkr" {
   vpc_id = aws_vpc.birdnest-vpc.id
-  service_name = "com.amazonaws.eu-north-1.ecr.dkr"
+  service_name = "${aws_ecr_repository.birdnest-ecr.registry_id}.dkr.ecr.eu-north-1.amazonaws.com"
 }
 
 resource "aws_internet_gateway" "birdnest-igw" {
