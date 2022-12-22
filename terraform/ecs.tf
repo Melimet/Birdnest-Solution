@@ -13,15 +13,16 @@ data "aws_secretsmanager_secret_version" "current" {
   secret_id = data.aws_secretsmanager_secret.secrets.id
 }
 
-data "template_file" "env_vars" {
-  vars = {PORT= 3001,
-    DB_PORT= 5432,
-    DB_NAME= "birdnestDb",
-    DB_PASSWORD= data.aws_secretsmanager_secret_version.current.secret_string,
-    DB_HOST= "birdnest-rds.cytbr08afwwn.eu-north-1.rds.amazonaws.com"}
-}
+# data "template_file" "env_vars" {
+#   vars = {PORT= 3001,
+#     DB_PORT= 5432,
+#     DB_NAME= "birdnestDb",
+#     DB_PASSWORD= data.aws_secretsmanager_secret_version.current.secret_string,
+#     DB_HOST= "birdnest-rds.cytbr08afwwn.eu-north-1.rds.amazonaws.com"}
+# }
 
 
+//      &&"environment": [${data.template_file.env_vars.rendered}],
 resource "aws_ecs_task_definition" "birdnest-ecs-task" {
   family = "birdnest-ecs-task"
   container_definitions=<<TASK_DEFINITION
@@ -29,7 +30,18 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
     {
       "name": "birdnest-ecs-container",
       "image": "${aws_ecr_repository.birdnest-ecr.repository_url}:birdnest-image",
-      "environment": [${data.template_file.env_vars.rendered}],
+
+      "environment": [
+        {
+         "PORT": 3001,
+         "DB_PORT": 5432,
+         "DB_PASSWORD": "${data.aws_secretsmanager_secret_version.current.secret_string}",
+         "DB_HOST": "${aws_db_instance.birdnest_rds.address}",
+         "DB_USERNAME": "melimet",
+         "DB_NAME": "birdnestDb"
+        }
+      ],
+
       "essential": true,
       "portMappings": [
         {
