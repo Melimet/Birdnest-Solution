@@ -95,6 +95,12 @@ resource "aws_route" "public" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.birdnest-igw.id
+
+}
+
+resource "aws_route_table_association" "private" {
+  subnet_id = aws_subnet.private[0].id
+  route_table_id = aws_route_table.public.id
 }
 
 resource "aws_route_table_association" "public" {
