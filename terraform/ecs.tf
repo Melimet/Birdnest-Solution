@@ -23,9 +23,12 @@ data "aws_secretsmanager_secret_version" "current" {
 
 
 //      &&"environment": [${data.template_file.env_vars.rendered}],
+
+         //"DB_PASSWORD":"${data.aws_secretsmanager_secret_version.current.secret_string}",
+         //"DB_HOST":"${aws_db_instance.birdnest_rds.address}",
 resource "aws_ecs_task_definition" "birdnest-ecs-task" {
   family = "birdnest-ecs-task"
-  container_definitions=<<TASK_DEFINITION
+  container_definitions=<<CONTAINER_DEFINITION
   [
     {
       "name": "birdnest-ecs-container",
@@ -33,12 +36,11 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
 
       "environment": [
         {
-         "PORT": 3001,
-         "DB_PORT": 5432,
-         "DB_PASSWORD": "${data.aws_secretsmanager_secret_version.current.secret_string}",
-         "DB_HOST": "${aws_db_instance.birdnest_rds.address}",
-         "DB_USERNAME": "melimet",
-         "DB_NAME": "birdnestDb"
+         "PORT":3001,
+         "DB_PORT":5432,
+
+         "DB_USERNAME":"melimet",
+         "DB_NAME":"birdnestDb"
         }
       ],
 
@@ -59,7 +61,7 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
       }
     }
   ]
-TASK_DEFINITION
+CONTAINER_DEFINITION
   cpu= "256"
   memory= "512"
   requires_compatibilities = ["FARGATE"]
