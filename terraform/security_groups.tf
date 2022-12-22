@@ -1,6 +1,8 @@
 resource "aws_security_group" "birdnest_ecs_security_group" {
   vpc_id      = aws_vpc.birdnest-vpc.id
-  ingress = {
+  name        = "birdnest-ecs-security-group"
+
+  ingress {
     from_port = 0
     to_port = 0
     protocol = "-1"
