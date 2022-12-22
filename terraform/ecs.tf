@@ -35,8 +35,8 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
 
       "environment": [
         
-         {"name": "PORT", "value": 3001},
-         {"name": "DB_PORT", "value": 5432},
+         {"name": "PORT", "value": "3001"},
+         {"name": "DB_PORT", "value": "5432"},
          {"name": "DB_PASSWORD", "value": "${data.aws_secretsmanager_secret_version.current.secret_string}"},
          {"name": "DB_HOST", "value": "${aws_db_instance.birdnest_rds.address}"},
          {"name": "DB_USERNAME", "value": "melimet"},
