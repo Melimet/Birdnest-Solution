@@ -37,6 +37,14 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
           "hostPort": 3001
         }
       ]
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "${aws_cloudwatch_log_group.birdnest_ecs_logs.id}",
+          "awslogs-region": "eu-north-1",
+          "awslogs-stream-prefix": "birdnest-ecs-container" 
+        }
+      }
     }
   ]
 TASK_DEFINITION
