@@ -21,6 +21,13 @@ resource aws_vpc_endpoint "ecr-dkr" {
   service_name = "com.amazonaws.eu-north-1.ecr.dkr" 
 }
 
+resource aws_vpc_endpoint "s3-gateway" {
+  subnet_ids = [aws_subnet.private[0].id]
+  vpc_endpoint_type = "Interface"
+  vpc_id = aws_vpc.birdnest-vpc.id
+  service_name = "com.amazonaws.eu-north-1.s3"
+}
+
 resource "aws_vpc_endpoint" "secretsmanager" {
   subnet_ids = [aws_subnet.private[0].id]
   vpc_endpoint_type = "Interface"
