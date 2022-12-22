@@ -12,6 +12,10 @@ resource aws_vpc_endpoint "ecr-api" {
   vpc_endpoint_type = "Interface"
   vpc_id = aws_vpc.birdnest-vpc.id
   service_name = "com.amazonaws.eu-north-1.ecr.api"
+
+  tags = {
+    "Name" = "birdnest-ecr-api-endpoint"
+  }
 }
 
 resource aws_vpc_endpoint "ecr-dkr" {
@@ -19,13 +23,22 @@ resource aws_vpc_endpoint "ecr-dkr" {
   vpc_endpoint_type = "Interface"
   vpc_id = aws_vpc.birdnest-vpc.id
   service_name = "com.amazonaws.eu-north-1.ecr.dkr" 
+  
+  tags = {
+    "Name" = "birdnest-ecr-dkr-endpoint"
+  }
 }
 
 resource aws_vpc_endpoint "s3-gateway" {
   subnet_ids = [aws_subnet.private[0].id]
-  vpc_endpoint_type = "Interface"
+  vpc_endpoint_type = "Gateway"
+  route_table_ids = [aws_route_table.public.id]
   vpc_id = aws_vpc.birdnest-vpc.id
   service_name = "com.amazonaws.eu-north-1.s3"
+
+  tags = {
+    "Name" = "birdnest-s3-gateway-endpoint"
+  }
 }
 
 resource "aws_vpc_endpoint" "secretsmanager" {
@@ -33,6 +46,10 @@ resource "aws_vpc_endpoint" "secretsmanager" {
   vpc_endpoint_type = "Interface"
   vpc_id = aws_vpc.birdnest-vpc.id
   service_name = "com.amazonaws.eu-north-1.secretsmanager"
+
+  tags = {
+    "Name" = "birdnest-secretsmanager-endpoint"
+  }
 }
 
 resource "aws_internet_gateway" "birdnest-igw" {
