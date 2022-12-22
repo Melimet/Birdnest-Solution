@@ -13,18 +13,6 @@ data "aws_secretsmanager_secret_version" "current" {
   secret_id = data.aws_secretsmanager_secret.secrets.id
 }
 
-# data "template_file" "env_vars" {
-#   vars = {PORT= 3001,
-#     DB_PORT= 5432,
-#     DB_NAME= "birdnestDb",
-#     DB_PASSWORD= data.aws_secretsmanager_secret_version.current.secret_string,
-#     DB_HOST= "birdnest-rds.cytbr08afwwn.eu-north-1.rds.amazonaws.com"}
-# }
-
-
-//      &&"environment": [${data.template_file.env_vars.rendered}],
-
-         
 resource "aws_ecs_task_definition" "birdnest-ecs-task" {
   family = "birdnest-ecs-task"
   container_definitions=<<CONTAINER_DEFINITION
@@ -80,6 +68,9 @@ resource "aws_ecs_service" "birdnest-ecs-service" {
   network_configuration {
     subnets = aws_subnet.private.*.id
     assign_public_ip = true
+    security_groups = [
+      aws_security_group.birdnest_ecs_security_group.id
+    ]
   }
   tags = {
     "name" = "birdnest-ecs-service"
