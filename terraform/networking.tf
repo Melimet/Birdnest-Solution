@@ -30,7 +30,7 @@ resource aws_vpc_endpoint "ecr-dkr" {
 }
 
 resource aws_vpc_endpoint "s3-gateway" {
-  subnet_ids = [aws_subnet.private[0].id]
+  
   vpc_endpoint_type = "Gateway"
   route_table_ids = [aws_route_table.public.id]
   vpc_id = aws_vpc.birdnest-vpc.id
