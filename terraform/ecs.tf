@@ -36,7 +36,7 @@ resource "aws_ecs_task_definition" "birdnest-ecs-task" {
           "containerPort": 3001,
           "hostPort": 3001
         }
-      ]
+      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
