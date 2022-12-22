@@ -15,7 +15,7 @@ const preparseDB_INFO = {
 
 const parsedDBINFO = DB_INFO_ZOD.safeParse(preparseDB_INFO)
 if (!parsedDBINFO.success) {
-  throw new Error(`CRITICAL ERROR: Database info is not valid, check .env file.
+  throw new Error(`CRITICAL ERROR: Database info is not valid, fix environment variables.
   ${parsedDBINFO.error}}`)
 }
 
