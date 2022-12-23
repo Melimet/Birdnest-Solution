@@ -61,7 +61,7 @@ On a succesful CI run, the CD pipeline builds a new container image based on the
 
 ## Cloud architecture
 
-__Disclaimer__: This is my second time doing anything with AWS and the absolute first time using Terraform, but this project seemed like a good excuse to try them out. I ended up working quite alot on the cloud deployment and this was by far the most challenging part of the project, but the end result was satisfying.
+__Disclaimer__: This is my second time doing anything with AWS and the absolute first time using [Terraform](https://www.terraform.io/), but this project seemed like a good excuse to try them out. I ended up working quite alot on the cloud deployment and this was by far the most challenging part of the project, but the end result was satisfying.
 
 The application is hosted inside an [ECS](https://aws.amazon.com/ecs/) [Fargate](https://aws.amazon.com/fargate/) instance and the production database is hosted in [AWS RDS](https://aws.amazon.com/rds/). The deployment in it's entirety is done through Terraform. The deployment files can be viewed in `./terraform`. 
 

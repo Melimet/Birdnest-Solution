@@ -7,6 +7,9 @@ import parseDroneXml from './droneXmlParser'
 
 async function droneHandler() {
   const droneData = await pollDroneApi()
+
+  if (!droneData) return undefined
+
   const drones = parseDroneXml(droneData)
 
   if (!drones) return undefined
