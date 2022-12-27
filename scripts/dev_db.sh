@@ -1,0 +1,1 @@
+docker run -d --name pgsql-dev -e POSTGRES_PASSWORD=db_password -p 5432:5432 postgres
