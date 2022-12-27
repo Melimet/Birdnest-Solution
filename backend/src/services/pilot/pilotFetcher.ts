@@ -10,7 +10,11 @@ async function getPilotData(
     const url = baseUrl + violator.serialNumber
     const response = await axios.get(url)
 
-    return { ...response.data, distance: violator.distance }
+    return {
+      ...response.data,
+      distance: violator.distance,
+      latestNdzBreach: violator.latestNdzBreach,
+    }
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.log(error.message)

@@ -7,17 +7,30 @@ function stringExtractor(input: string, value: string): string | undefined {
   return result?.[1]
 }
 
+function extractTimeStamp(input: string): string | undefined {
+  const result = input.match(new RegExp(`<capture snapshotTimestamp="(.*)">`))
+
+  if (!result) return undefined
+
+  const timestamp = new Date(result?.[1])
+
+  return timestamp.getTime().toString()
+}
+
 function convertXmlToDrones(xml: string): Drone[] | undefined {
-  const [, ...xmlInArray] = xml.split('<drone>')
+  const [deviceInfo, ...droneXmlInArray] = xml.split('<drone>')
+  
+  const latestNdzBreach = extractTimeStamp(deviceInfo) 
 
   const valuesToSearch = ['serialNumber', 'positionX', 'positionY']
 
-  const droneData = xmlInArray.flatMap((droneInfo) => {
+  const droneData = droneXmlInArray.flatMap((droneInfo) => {
     const wantedValues = valuesToSearch.map((wordToSearch) =>
       stringExtractor(droneInfo, wordToSearch)
     )
 
     const drone = {
+      latestNdzBreach,
       serialNumber: wantedValues[0],
       positionX: Number(wantedValues[1]),
       positionY: Number(wantedValues[2]),

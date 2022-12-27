@@ -1,17 +1,20 @@
 import { z } from 'zod'
 
 export const DroneZod = z.object({
+  latestNdzBreach: z.string(),
   serialNumber: z.string(),
   positionY: z.number().positive(),
   positionX: z.number().positive(),
 })
 
 export interface PilotDistance {
+  latestNdzBreach: string
   serialNumber: string
   distance: number
 }
 
 export const PilotZod = z.object({
+  latestNdzBreach: z.string(),
   pilotId: z.string(),
   firstName: z.string(),
   lastName: z.string(),
@@ -20,9 +23,6 @@ export const PilotZod = z.object({
   distance: z.number().positive(),
 })
 
-export interface PilotToClient extends PilotType {
-  latestNdzBreach: string
-}
 
 export const DB_INFO_ZOD = z.object({
   HOST: z.string(),

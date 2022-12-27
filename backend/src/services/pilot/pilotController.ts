@@ -16,7 +16,7 @@ function createPilotObjects(pilots: PilotType[]) {
   return pilots.map((pilot) => {
     return {
       ...pilot,
-      latestNdzBreach: Date.now(),
+      latestNdzBreach: Number(pilot.latestNdzBreach),
     }
   })
 }
@@ -35,7 +35,7 @@ export async function pruneOldBreaches() {
 function updateNdzBreachTime(pilot: PilotType) {
   return Pilot.update(
     {
-      latestNdzBreach: Date.now(),
+      latestNdzBreach: pilot.latestNdzBreach,
     },
     {
       where: { pilotId: pilot.pilotId },
@@ -47,7 +47,7 @@ function updateNdzBreachTimeAndDistance(pilot: PilotType) {
   return Pilot.update(
     {
       distance: pilot.distance,
-      latestNdzBreach: Date.now(),
+      latestNdzBreach: pilot.latestNdzBreach,
     },
     {
       where: { pilotId: pilot.pilotId },

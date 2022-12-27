@@ -12,6 +12,7 @@ function roundResult(result: number): number {
 export function handleDroneLocations(drones: Drone[]): PilotDistance[] {
   const distances = drones.map((drone) => {
     return {
+      latestNdzBreach: drone.latestNdzBreach,
       serialNumber: drone.serialNumber,
       distance: roundResult(
         calculateDistance(drone.positionX, drone.positionY)

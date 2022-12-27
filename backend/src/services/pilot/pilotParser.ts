@@ -1,9 +1,9 @@
 import Pilot from '../../models/pilot'
-import { PilotToClient } from '../../types'
+import { PilotType } from '../../types'
 
-function convertPilotsToClientFormat(pilots: Pilot[]): PilotToClient[] {
+function convertPilotsToClientFormat(pilots: Pilot[]): PilotType[] {
   const parsedPilots = pilots.map((pilot) => {
-    const date = new Date(+pilot.latestNdzBreach)
+    
     return {
       pilotId: pilot.pilotId,
       firstName: pilot.firstName,
@@ -11,7 +11,7 @@ function convertPilotsToClientFormat(pilots: Pilot[]): PilotToClient[] {
       email: pilot.email,
       phoneNumber: pilot.phoneNumber,
       distance: pilot.distance,
-      latestNdzBreach: date.toLocaleTimeString('en-GB'),
+      latestNdzBreach: String(pilot.latestNdzBreach),
     }
   })
 
