@@ -1,7 +1,7 @@
 import { io } from '../../index'
-import { PilotToClient } from '../../types'
+import { PilotType } from '../../types'
 
-function emitPilots(pilots: PilotToClient[]) {
+function emitPilots(pilots: PilotType[]) {
   console.log('EMITTING PILOT DATA NOW')
   io.emit('pilots', { pilots })
 }
