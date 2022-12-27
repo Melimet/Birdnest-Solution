@@ -1,6 +1,7 @@
 import { PilotType } from '../types'
 
 function Pilot({ pilot }: { pilot: PilotType }) {
+  const date = new Date(+pilot.latestNdzBreach)
   return (
     <article className="pilotCard">
       <h3>
@@ -10,7 +11,7 @@ function Pilot({ pilot }: { pilot: PilotType }) {
       <p>{pilot.phoneNumber}</p>
       <p>Closest distance: {pilot.distance} m</p>
 
-      <p>Last seen inside NDZ: {pilot.latestNdzBreach}</p>
+      <p>Last seen inside NDZ: {date.toLocaleTimeString('en-GB')}</p>
     </article>
   )
 }
