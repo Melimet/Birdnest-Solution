@@ -1,13 +1,13 @@
 resource "aws_alb" "birdnest_load_balancer" {
-  name               = "birdnest_alb"
+  name               = "birdnest-alb"
   internal           = false
   load_balancer_type = "application"
   subnets            = aws_subnet.public.*.id
-  security_groups    = [aws_security_group.load_balancer_security_group.id]
+  security_groups    = [aws_security_group.birdnest_load_balancer_security_group.id]
 }
 
 resource "aws_lb_target_group" "target_group" {
-  name     = "birdnest_target_group"
+  name     = "birdnest-target-group"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.birdnest-vpc.id

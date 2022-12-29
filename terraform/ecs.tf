@@ -69,9 +69,19 @@ resource "aws_ecs_service" "birdnest-ecs-service" {
     subnets = aws_subnet.private.*.id
     assign_public_ip = true
     security_groups = [
-      aws_security_group.birdnest_ecs_security_group.id
+      aws_security_group.birdnest_ecs_security_group.id,
+      aws_security_group.birdnest_load_balancer_security_group.id
     ]
   }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.target_group.arn
+    container_name = "birdnest-ecs-container"
+    container_port = 3001
+  }
+
+  depends_on = [aws_lb_listener.birdnest_listener]
+
   tags = {
     "name" = "birdnest-ecs-service"
   }
