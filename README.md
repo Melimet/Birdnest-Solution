@@ -32,7 +32,7 @@ __Alternatives to using docker(not recommended)__
 
 
 ### Step 0 for both ways
-0. Configure environment variables in `./backend/.env`. The environment file must be configured so that the app can connect to a postgresql database - Otherwise the app will not run. `./backend/` contains a `.env.pub` file which contains a model .env file with examples. `.env.pub` must be renamed to `.env`
+0. After cloning the repository with `git clone https://github.com/Melimet/Birdnest-Solution.git` Configure environment variables in `./backend/.env`. The environment file must be configured so that the app can connect to a postgresql database - Otherwise the app will not run. `./backend/` contains a `.env.pub` file which contains a model .env file with examples. `.env.pub` must be renamed to `.env`
 
 __If you are using pgsql docker image__, `./backend/.env.pub` is already configured correctly, just rename it to `.env`
 
