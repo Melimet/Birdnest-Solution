@@ -79,4 +79,4 @@ Testing is implemented in the form of unit and integration tests in the backend.
 - For improved scalability, backend could be split in to two separate entities: A poller api that polls the provided apis and writes the pilot info into database and a simple express backend that responds to frontend's api requests.
 - Testing could be expanded by quite alot.
 - ~~Now that the application polls once every second, timestamps update even though they shouldn't.~~ Fixed
-- CD pipeline only pushes latest image to ECR, production is not updated right away
+- ~~CD pipeline only pushes latest image to ECR, production is not updated right away~~ Fixed
