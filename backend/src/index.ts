@@ -6,11 +6,7 @@ import { getPilotsFromDb } from './services/pilot/pilotController'
 import convertPilotsToClientFormat from './services/pilot/pilotParser'
 
 const server = http.createServer(app)
-export const io = new Server(server, {
-  cors: {
-    origin: '*',
-  },
-})
+export const io = new Server(server)
 
 io.on('connection', async (socket) => {
   console.log('Client connected')
