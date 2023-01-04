@@ -15,8 +15,7 @@ services:
     restart: always
     ports:
       - '3001:3001'
-    environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    environment: 
       PORT: 3001
       DB_HOST: db
       DB_PASSWORD: db_password
