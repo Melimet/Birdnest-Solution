@@ -95,6 +95,7 @@ async function handleDatabase(pilots: PilotType[]): Promise<number> {
   const pilotObjects = createPilotObjects(newPilots)
   const createdPilots = await Pilot.bulkCreate(pilotObjects, {
     returning: true,
+    ignoreDuplicates: true,
   })
 
   return updatedOldPilots.length + createdPilots.length
