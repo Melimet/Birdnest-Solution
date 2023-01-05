@@ -53,11 +53,12 @@ Pilot.init(
     sequelize,
     modelName: 'pilot',
     timestamps: false,
-    indexes: [{
-      unique: true,
-      fields: ['pilotId']
-    }
-    ]
+    indexes: [
+      {
+        unique: true,
+        fields: ['pilotId'],
+      },
+    ],
   }
 )
 

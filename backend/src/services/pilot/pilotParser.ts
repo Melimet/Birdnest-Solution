@@ -3,7 +3,6 @@ import { PilotType } from '../../types'
 
 function convertPilotsToClientFormat(pilots: Pilot[]): PilotType[] {
   const parsedPilots = pilots.map((pilot) => {
-    
     return {
       pilotId: pilot.pilotId,
       firstName: pilot.firstName,

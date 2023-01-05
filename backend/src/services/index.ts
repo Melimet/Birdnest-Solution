@@ -28,7 +28,7 @@ async function serviceHandler() {
 
   const sentPilots = await handleChangesInDb(pilotChanges)
 
-  return sentPilots 
+  return sentPilots
 }
 
 setInterval(async () => {

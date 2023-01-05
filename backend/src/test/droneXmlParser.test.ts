@@ -8,19 +8,19 @@ describe(`DroneXmlParser`, () => {
         positionX: 248970.73496574067,
         positionY: 161438.6485809734,
         serialNumber: 'SN-IuvKRfoMZG',
-        latestNdzBreach: "1670089673337"
+        latestNdzBreach: '1670089673337',
       },
       {
         positionX: 377374.26768386713,
         positionY: 171826.60599272174,
         serialNumber: 'SN-MWS_f87vLJ',
-        latestNdzBreach: "1670089673337"
+        latestNdzBreach: '1670089673337',
       },
       {
         positionX: 45918.87233451607,
         positionY: 305787.4839306696,
         serialNumber: 'SN-BiaStV1AF0',
-        latestNdzBreach: "1670089673337"
+        latestNdzBreach: '1670089673337',
       },
     ]
 

@@ -19,8 +19,8 @@ function extractTimeStamp(input: string): string | undefined {
 
 function convertXmlToDrones(xml: string): Drone[] | undefined {
   const [deviceInfo, ...droneXmlInArray] = xml.split('<drone>')
-  
-  const latestNdzBreach = extractTimeStamp(deviceInfo) 
+
+  const latestNdzBreach = extractTimeStamp(deviceInfo)
 
   const valuesToSearch = ['serialNumber', 'positionX', 'positionY']
 

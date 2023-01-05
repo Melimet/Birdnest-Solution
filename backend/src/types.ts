@@ -23,7 +23,6 @@ export const PilotZod = z.object({
   distance: z.number().positive(),
 })
 
-
 export const DB_INFO_ZOD = z.object({
   HOST: z.string(),
   USERNAME: z.string(),

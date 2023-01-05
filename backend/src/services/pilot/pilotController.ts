@@ -68,7 +68,6 @@ function sortPilots(
   pilots: PilotType[],
   pilotsFromDb: Pilot[]
 ): [PilotType[], PilotType[]] {
-
   return pilots.reduce(
     ([oldPilots, newPilots], pilot) => {
       return pilotsFromDb.some(
