@@ -8,6 +8,7 @@ resource "aws_db_instance" "birdnest_rds" {
   username             = "melimet"
   password             = random_password.db_master_pass.result
   publicly_accessible    = true
+  security_group_names = [aws_security_group.birdnest_rds_security_group.id]
 }
 
 resource "random_password" "db_master_pass" {
