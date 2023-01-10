@@ -12,7 +12,12 @@ resource "aws_internet_gateway" "birdnest-igw" {
   tags = {
     Name = "birdnest-igw"
   }
+}
 
+resource "aws_db_subnet_group" "birdnest_db_subnet_group" {
+  name = "birdnest-db-subnet-group"
+
+  subnet_ids = [aws_subnet.public[0].id, aws_subnet.private[0].id]
 }
 
 resource "aws_subnet" "private" {

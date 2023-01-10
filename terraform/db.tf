@@ -7,7 +7,8 @@ resource "aws_db_instance" "birdnest_rds" {
   instance_class       = "db.t3.micro"
   username             = "melimet"
   password             = random_password.db_master_pass.result
-  publicly_accessible    = true
+  publicly_accessible  = true
+  db_subnet_group_name = aws_db_subnet_group.birdnest_db_subnet_group.name
   vpc_security_group_ids = [aws_security_group.birdnest_ecs_security_group.id]
 }
 
