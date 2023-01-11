@@ -61,7 +61,7 @@ The project can now be accessed in http://localhost:3001/.
 ## CI/CD 
 
 CI is implemented through a simplistic Github actions which runs linters and existing tests. 
-On a succesful CI run, the CD pipeline builds a new container image based on the latest commit and pushes it to [AWS ECR](https://aws.amazon.com/ecr/).
+On a succesful CI run, the CD pipeline builds a new container image based on the latest commit and pushes it to [AWS ECR](https://aws.amazon.com/ecr/). If the push to ECR is succesful, a new ECS task definition is created and then deployed with the latest image.
 
 ## Cloud architecture
 
