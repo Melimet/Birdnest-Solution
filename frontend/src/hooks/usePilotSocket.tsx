@@ -20,6 +20,9 @@ function usePilotSocket() {
       const validatedPilots = validatePilots(pilotData.pilots)
       setPilots(validatedPilots)
     })
+    return () => {
+      socket.off('pilots')
+    }
   }, [])
 
   return pilots
