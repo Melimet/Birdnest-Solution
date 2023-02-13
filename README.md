@@ -1,6 +1,6 @@
 # Birdnest-Solution ![CI/CD](https://github.com/Melimet/Birdnest-Solution/actions/workflows/main.yml/badge.svg) [![Maintainability](https://api.codeclimate.com/v1/badges/7943437e5a25b59d174a/maintainability)](https://codeclimate.com/github/Melimet/Birdnest-Solution/maintainability)
 
-## Project is hosted [here](http://birdnest-alb-772143449.eu-north-1.elb.amazonaws.com/)
+## Project is hosted [here](http://birdnest-alb-772143449.eu-north-1.elb.amazonaws.com/) - _EDIT_ : The project is no longer accessible online due to the costs of hosting on AWS
 ## Description
 
 This is my solution to [Reaktor](https://www.reaktor.com/) winter 2022 [code challenge](https://assignments.reaktor.com/birdnest/). 
